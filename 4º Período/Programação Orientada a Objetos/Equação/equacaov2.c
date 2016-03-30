@@ -144,9 +144,9 @@ Equacao *criaEquacao1g(){
 }
 
 // Calcula as raízes de uma equação do 3º grau
-double calcularRaizes(){
+//~ double calcularRaizes(){
 	
-}
+//~ }
 
 
 int main(int argc, char **argv)
