@@ -1,0 +1,56 @@
+O que é erro de tipo?
+
+* Erro de tipo é quando uma determinada operação é realizada sobre um tipo que não a suporta.
+
+Questão 3)
+
+Sim, poderia. A função está utilizando apenas operações aritméticas sobre números, então o compilador poderia descobrir qual é o tipo de entrada e retorno da função.
+
+
+Questão 4)
+
+* Conferência do compilador:
+int x = 1, y = 5;
+x = y*x;
+
+Conferência em execução:
+z = y + 1;
+y = 3*z;
+
+
+Questão 5)
+
+ *Uma linguagem tem tipagem forte se a verificação de tipos sempre é feita para
+todas as operações;
+Uma linguagem é estaticamente tipada se quase toda a verificação de tipos é
+feita pelo compilador antes do programa ser executado;
+
+Questão 6)
+
+* Não. Pode ser que uma expressão entre dois inteiros resulte em um resultado em ponto flutuante.
+
+Questão 7)
+
+* Assembly não possui tipos. Mas temos operações diferentes para ponto flutuante.
+
+Questão 8)
+
+*Porque não se sabe previamente o tipo de dado que aquela área de memória irá receber.
+
+Questão 9)
+*O objeto list envia mensagem para o método 'add' com o parâmetro (valor) 'elem';
+
+Questão 10)
+*
+
+Questão 13)
+*Porque é mais difícil refatorar um código onde não se sabe o tipo de uma variável. Por exemplo, se uma variável num momento do código tem o tipo INT e depois o programador sobrescreve com uma STRING. Como a refatoração irá saber realmente qual tipo usar?
+Esse é um dos problemas para a refatoração.
+
+Questão 14)
+*Apesar das duas precisarem ter comentários. As linguagens dinamicamente tipadas precisam de comentários a mais, pois precisaremos dizer também, que tipo aquela variável irá receber e para qual tipo foi alterado (se for);
+
+
+
+
+
