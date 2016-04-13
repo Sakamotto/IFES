@@ -15,4 +15,9 @@ public class Cinema extends Local{
     public int getNiSimples(){
         return numCadeirasSimples;
     }
+
+    public int getTotalCadeiras(){
+        return numCadeirasEspeciais + numCadeirasSimples;
+    }
+
 }

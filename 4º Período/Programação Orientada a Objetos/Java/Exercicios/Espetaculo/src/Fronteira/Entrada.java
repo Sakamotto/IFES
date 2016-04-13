@@ -1,7 +1,5 @@
 package Fronteira;
 
-import Entidade.Temporada;
-
 import java.util.Scanner;
 
 /**
@@ -9,7 +7,6 @@ import java.util.Scanner;
  */
 public class Entrada {
 
-    private Temporada temp = new Temporada();
     private Scanner entrada = new Scanner(System.in);
 
     public void imprimeOpcoes(){

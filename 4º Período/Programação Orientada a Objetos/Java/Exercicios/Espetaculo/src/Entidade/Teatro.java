@@ -3,7 +3,7 @@ package Entidade;
 /**
  * Created by 20142BSI0054 on 13/04/2016.
  */
-public class Teatro extends Local {
+public class Teatro extends Local{
 
     public static int numCadeirasCamarote;
     public static int numCadeirasEspeciais;
@@ -20,6 +20,10 @@ public class Teatro extends Local {
 
     public int getNiSimples(){
         return numCadeirasSimples;
+    }
+
+    public int getTotalCadeiras(){
+        return numCadeirasCamarote + numCadeirasEspeciais + numCadeirasSimples;
     }
 
 }
