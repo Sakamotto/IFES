@@ -6,7 +6,8 @@ package Entidade;
 public class Cinema extends Local{
 
     public static int numCadeirasEspeciais;
-    public static int numCadeirasSimples;
+    public static int numCadeirasSimples
+    public static int maxCadeiras = getTotalCadeiras();
 
     public int getNiEspecial(){
         return numCadeirasEspeciais;
@@ -18,6 +19,14 @@ public class Cinema extends Local{
 
     public int getTotalCadeiras(){
         return numCadeirasEspeciais + numCadeirasSimples;
+    }
+
+    public void setNiEspecial(int especial){
+        this.numCadeirasEspecial = especial;
+    }
+
+    public void setNiSimples(int simples){
+        this.numCadeirasSimples = simples;
     }
 
 }

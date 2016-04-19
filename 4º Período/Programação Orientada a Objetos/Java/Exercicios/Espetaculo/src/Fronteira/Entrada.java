@@ -8,21 +8,30 @@ import java.util.Scanner;
 public class Entrada {
 
     private Scanner entrada = new Scanner(System.in);
+    private int tipoLocal;
+    private int tipoIngresso;
 
     public void imprimeOpcoes(){
-        System.out.println("--------------- Opções ---------------\n");
+        System.out.println("--------------- Local ---------------\n");
+        System.out.println("1 - Teatro");
+        System.out.println("2 - Cinema");
+        tipoLocal = entrada.nextInt();
+
+        System.out.println("\n--------------- Opções ---------------\n");
         System.out.println("1 - Simples");
         System.out.println("2 - Especial");
         System.out.println("3 - Camarote");
         System.out.println("Digite a opção desejada: ");
-        leOpcao();
+        tipoIngresso = entrada.nextInt();
     }
 
-    private int leOpcao(){
-        return entrada.nextInt();
+    public int getTipoLocal(){
+        return this.tipoLocal;
     }
 
-
+    public int getTipoIngreso(){
+        return this.tipoIngresso;
+    }
 
 
 }
