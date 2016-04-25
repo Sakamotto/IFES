@@ -23,7 +23,7 @@ public class Evento {
     }
 
     // NÃO SERVE PRA NADA?!
-    public void insereContatos(Contato c[]) {
+    public void insereContatos(Contato c[], int nc) {
 
     }
 

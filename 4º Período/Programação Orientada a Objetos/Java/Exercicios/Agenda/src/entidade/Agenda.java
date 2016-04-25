@@ -36,24 +36,25 @@ public class Agenda {
 //        op = system.InputHandler.readInt();
 
         eventos[neventos] = e;
-        if(e instanceof Balada){
-            ((Balada)e).insereContatos(this.getContatos(), maxc);
-        }else if(e instanceof Reuniao){
-            ((Reuniao)e).insereContatos(this.getContatos(), maxc);
-        }else if(e instanceof Almoco){
-            ((Almoco)e).insereContatos(this.getContatos(), maxc);
-        }
+
+//        if(e instanceof Balada){
+//            e.insereContatos(this.getContatos(), maxc);
+//        }else if(e instanceof Reuniao){
+//            e.insereContatos(this.getContatos(), maxc);
+//        }else if(e instanceof Almoco){
+//            e.insereContatos(this.getContatos(), maxc);
+//        }
+
+        eventos[neventos].insereContatos(this.getContatos(), 100);
         neventos++;
-
-
     }
 
     public void criaContato(Contato c) {
         // Adiciona contatos no vetor
         if (ncontatos < maxc) {
-            getContatos()[ncontatos] = c;
+            contatos[ncontatos] = c;
+            this.ncontatos++;
         }
-        this.ncontatos++;
     }
 
     public Contato[] getContatos() {

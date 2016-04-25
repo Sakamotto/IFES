@@ -52,26 +52,26 @@ public class TelaPrincipal implements PropertyChangeListener {
             System.out.println("3 - Nenhum");
             secondOption = system.InputHandler.readInt();
 
-            if (secondOption != 3) {
-                if (secondOption == 1) {
-                    colega = new Colega();
-                    colega.setNome(nome);
-                    c = new Contato(colega);
-                    agenda.criaContato(c);
-                } else if (secondOption == 2) {
-                    familia = new Familia();
-                    familia.setNome(nome);
-                    parentesco = system.InputHandler.readString();
-                    familia.setParentesco(parentesco);
-                    c = new Contato(familia);
-                    agenda.criaContato(c);
-                } else {
-                    amigo = new Amigo();
-                    amigo.setNome(nome);
-                    amigo.setNivel(nivel);
-                    agenda.criaContato(amigo);
-                }
+            //if (secondOption != 3) {
+            if (secondOption == 1) {
+                colega = new Colega();
+                colega.setNome(nome);
+                c = new Contato(colega);
+                agenda.criaContato(c);
+            } else if (secondOption == 2) {
+                familia = new Familia();
+                familia.setNome(nome);
+                parentesco = system.InputHandler.readString();
+                familia.setParentesco(parentesco);
+                c = new Contato(familia);
+                agenda.criaContato(c);
+            } else {
+                amigo = new Amigo();
+                amigo.setNome(nome);
+                amigo.setNivel(nivel);
+                agenda.criaContato(amigo);
             }
+            //}
 
         } else if (optContato == 2) {
 
@@ -84,28 +84,28 @@ public class TelaPrincipal implements PropertyChangeListener {
             System.out.println("3 - Nenhum");
             secondOption = system.InputHandler.readInt();
 
-            if (secondOption != 3) {
-                if (secondOption == 1) {
-                    amigo = new Amigo();
-                    amigo.setNome(nome);
-                    System.out.println("Nível: ");
-                    nivel = system.InputHandler.readString();
-                    amigo.setNivel(nivel);
-                    c = new Contato(amigo);
-                    agenda.criaContato(c);
-                } else if (secondOption == 2) {
-                    familia = new Familia();
-                    familia.setNome(nome);
-                    parentesco = system.InputHandler.readString();
-                    familia.setParentesco(parentesco);
-                    c = new Contato(familia);
-                    agenda.criaContato(c);
-                } else {
-                    colega = new Colega();
-                    colega.setNome(nome);
-                    agenda.criaContato(colega);
-                }
+            //if (secondOption != 3) {
+            if (secondOption == 1) {
+                amigo = new Amigo();
+                amigo.setNome(nome);
+                System.out.println("Nível: ");
+                nivel = system.InputHandler.readString();
+                amigo.setNivel(nivel);
+                c = new Contato(amigo);
+                agenda.criaContato(c);
+            } else if (secondOption == 2) {
+                familia = new Familia();
+                familia.setNome(nome);
+                parentesco = system.InputHandler.readString();
+                familia.setParentesco(parentesco);
+                c = new Contato(familia);
+                agenda.criaContato(c);
+            } else {
+                colega = new Colega();
+                colega.setNome(nome);
+                agenda.criaContato(colega);
             }
+            //}
 
 
         } else if (optContato == 3) {
@@ -120,32 +120,30 @@ public class TelaPrincipal implements PropertyChangeListener {
             System.out.println("3 - Nenhum");
             secondOption = system.InputHandler.readInt();
 
-            if (secondOption != 3) {
-                if (secondOption == 1) {
-                    colega = new Colega();
-                    colega.setNome(nome);
-                    c = new Contato(colega);
-                    agenda.criaContato(c);
-                } else if (secondOption == 2) {
-                    amigo = new Amigo();
-                    amigo.setNome(nome);
-                    System.out.println("Nível: ");
-                    nivel = system.InputHandler.readString();
-                    amigo.setNivel(nivel);
-                    c = new Contato(amigo);
-                    agenda.criaContato(c);
-                } else {
-                    familia = new Familia();
-                    familia.setNome(nome);
-                    familia.setParentesco(parentesco);
-                    agenda.criaContato(familia);
-                }
+            //if (secondOption != 3) {
+            if (secondOption == 1) {
+                colega = new Colega();
+                colega.setNome(nome);
+                c = new Contato(colega);
+                agenda.criaContato(c);
+            } else if (secondOption == 2) {
+                amigo = new Amigo();
+                amigo.setNome(nome);
+                System.out.println("Nível: ");
+                nivel = system.InputHandler.readString();
+                amigo.setNivel(nivel);
+                c = new Contato(amigo);
+                agenda.criaContato(c);
+            } else {
+                familia = new Familia();
+                familia.setNome(nome);
+                familia.setParentesco(parentesco);
+                agenda.criaContato(familia);
             }
+            //}
         } else {
             System.out.println("**** Opção Inválida ****");
         }
-
-
     }
 
     public void criarEvento() {
@@ -193,9 +191,10 @@ public class TelaPrincipal implements PropertyChangeListener {
         }
     }
 
-    public void mostrarConvidados(){
+    public void mostrarConvidados() {
         int opt;
-        Evento eventos[] = agenda.getEventos();
+        Evento eventosAgenda[] = agenda.getEventos();
+        System.out.println("Tamanho dos Eventos:" + eventosAgenda.length);
 
         System.out.println("\n --- Escolha o evento que deseja mostrar os contatos --- ");
         System.out.println("1 - Balada");
@@ -203,10 +202,13 @@ public class TelaPrincipal implements PropertyChangeListener {
         System.out.println("3 - Almoço");
         opt = system.InputHandler.readInt();
 
-        if(opt == 1){
-            for(int i = 0; i < eventos.length; i++){
-                if(eventos[i] instanceof Balada){
-                    System.out.println(eventos[i].getContatos()[0]);
+        if (opt == 1) {
+            for (int i = 0; i < eventosAgenda.length; i++) {
+                if (eventosAgenda[i] instanceof Balada) {
+                    //System.out.println("----> : " + eventosAgenda[i].getContatos());
+                    for (int j = 0; j < eventosAgenda[i].getContatos().length; j++) {
+                        System.out.println(agenda.getContatos()[eventosAgenda[i].getContatos()[j]].getNome());
+                    }
                 }
             }
         }
