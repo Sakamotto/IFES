@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c73132f3-61e5-40a8-aabd-9092ff48db55" name="Default" comment="" />
-    <ignored path="Espetaculo.iws" />
+    <list default="true" id="18dc131e-8c0c-4371-9c33-178d85d1c019" name="Default" comment="" />
+    <ignored path="Espetaculo_2.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,54 +18,14 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="Espetaculo" />
+    <favorites_list name="Espetaculo_2" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Principal.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src /Controle/Principal.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
-    </option>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/Entidade/Espetaculo.java" />
-        <option value="$PROJECT_DIR$/src/Entidade/Peca.java" />
-        <option value="$PROJECT_DIR$/src/Entidade/Show.java" />
-        <option value="$PROJECT_DIR$/src/Entidade/Filme.java" />
-        <option value="$PROJECT_DIR$/src/Entidade/Local.java" />
-        <option value="$PROJECT_DIR$/src/Entidade/Teatro.java" />
-        <option value="$PROJECT_DIR$/src/Fronteira/Entrada.java" />
-        <option value="$PROJECT_DIR$/src/Entidade/Cinema.java" />
-        <option value="$PROJECT_DIR$/src/Entidade/Simples.java" />
-        <option value="$PROJECT_DIR$/src/Entidade/Camarote.java" />
-        <option value="$PROJECT_DIR$/src/Entidade/Temporada.java" />
-        <option value="$PROJECT_DIR$/src/Entidade/Ingresso.java" />
-        <option value="$PROJECT_DIR$/src/Entidade/Especial.java" />
-        <option value="$PROJECT_DIR$/src/Controle/Principal.java" />
-      </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
@@ -98,23 +58,27 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Espetaculo" />
+              <option name="myItemId" value="Espetaculo_2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Fronteira" />
+      <recent name="$PROJECT_DIR$/src/Entidade" />
+      <recent name="$PROJECT_DIR$/src/Controle" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Principal">
     <configuration default="false" name="Principal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -133,7 +97,7 @@
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Espetaculo" />
+      <module name="Espetaculo_2" />
       <envs />
       <method />
     </configuration>
@@ -291,7 +255,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Espetaculo" />
+      <module name="Espetaculo_2" />
       <envs />
       <method />
     </configuration>
@@ -388,17 +352,17 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c73132f3-61e5-40a8-aabd-9092ff48db55" name="Default" comment="" />
-      <created>1460559637014</created>
+      <changelist id="18dc131e-8c0c-4371-9c33-178d85d1c019" name="Default" comment="" />
+      <created>1461068594305</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1460559637014</updated>
+      <updated>1461068594305</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1600" height="873" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -410,13 +374,13 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -438,9 +402,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="2" />
-    </breakpoint-manager>
+    <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -448,105 +410,59 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src /Controle/Principal.java">
+    <entry file="file://$PROJECT_DIR$/src/Controle/Principal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src /Controle/Principal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src /Entidade/Camarote.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src /Entidade/Temporada.java">
+    <entry file="file://$PROJECT_DIR$/src/Entidade/Camarote.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controle/Principal.java" />
-    <entry file="file://$PROJECT_DIR$/src/Controle/Principal.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Ingresso.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Especial.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Simples.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Cinema.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Camarote.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Temporada.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Teatro.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Ingresso.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Especial.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Simples.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Camarote.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Temporada.java" />
-    <entry file="file://$PROJECT_DIR$/src/Fronteira/Entrada.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Local.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Teatro.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Cinema.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Ingresso.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Especial.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Simples.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Camarote.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Temporada.java" />
-    <entry file="file://$PROJECT_DIR$/src/Fronteira/Entrada.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Local.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Teatro.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Cinema.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade.java" />
-    <entry file="file://$PROJECT_DIR$/src/Fronteira.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Peca.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Filme.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Show.java" />
-    <entry file="file://$PROJECT_DIR$/src/Controle/Temporada.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Teatro.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Local.java" />
-    <entry file="file://$PROJECT_DIR$/src/Fronteira/Entrada.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Espetaculo.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Cinema.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Camarote.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Ingresso.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Simples.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Especial.java" />
-    <entry file="file://$PROJECT_DIR$/src/Entidade/Temporada.java" />
-    <entry file="file://$PROJECT_DIR$/src/Controle/Principal.java" />
-    <entry file="file://$PROJECT_DIR$/src /Entidade/Temporada.java">
+    <entry file="file://$PROJECT_DIR$/src/Fronteira/Entrada.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entidade/Temporada.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-126">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fronteira/Entrada.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="41" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entidade/Camarote.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src /Entidade/Camarote.java">
+    <entry file="file://$PROJECT_DIR$/src/Controle/Principal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src /Controle/Principal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="252">
+          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
