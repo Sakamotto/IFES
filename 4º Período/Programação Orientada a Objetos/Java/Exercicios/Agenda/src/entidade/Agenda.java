@@ -50,7 +50,6 @@ public class Agenda {
     }
 
     public void criaContato(Contato c) {
-        // Adiciona contatos no vetor
         if (ncontatos < maxc) {
             contatos[ncontatos] = c;
             this.ncontatos++;

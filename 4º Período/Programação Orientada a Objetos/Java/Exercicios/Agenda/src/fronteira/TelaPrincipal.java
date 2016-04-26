@@ -12,7 +12,7 @@ import system.*;
 
 public class TelaPrincipal implements PropertyChangeListener {
     MenuPrincipal menu;
-    Agenda agenda;
+    Agenda agenda = new Agenda();
 
     public TelaPrincipal() {
         menu = new MenuPrincipal();
@@ -28,13 +28,12 @@ public class TelaPrincipal implements PropertyChangeListener {
     public void criarContato() {
         int optContato, secondOption;
         String nome, nivel = "", parentesco;
-        agenda = new Agenda();
         Contato c;
         Amigo amigo;
         Colega colega;
         Familia familia;
 
-        System.out.println("\nEscolha o tipo de contado:");
+        System.out.println("\nEscolha o tipo de contato:");
         System.out.println("1 - Amigo");
         System.out.println("2 - Colega");
         System.out.println("3 - Família");
@@ -52,7 +51,6 @@ public class TelaPrincipal implements PropertyChangeListener {
             System.out.println("3 - Nenhum");
             secondOption = system.InputHandler.readInt();
 
-            //if (secondOption != 3) {
             if (secondOption == 1) {
                 colega = new Colega();
                 colega.setNome(nome);
@@ -71,7 +69,6 @@ public class TelaPrincipal implements PropertyChangeListener {
                 amigo.setNivel(nivel);
                 agenda.criaContato(amigo);
             }
-            //}
 
         } else if (optContato == 2) {
 
@@ -84,7 +81,6 @@ public class TelaPrincipal implements PropertyChangeListener {
             System.out.println("3 - Nenhum");
             secondOption = system.InputHandler.readInt();
 
-            //if (secondOption != 3) {
             if (secondOption == 1) {
                 amigo = new Amigo();
                 amigo.setNome(nome);
@@ -105,7 +101,6 @@ public class TelaPrincipal implements PropertyChangeListener {
                 colega.setNome(nome);
                 agenda.criaContato(colega);
             }
-            //}
 
 
         } else if (optContato == 3) {
@@ -120,7 +115,6 @@ public class TelaPrincipal implements PropertyChangeListener {
             System.out.println("3 - Nenhum");
             secondOption = system.InputHandler.readInt();
 
-            //if (secondOption != 3) {
             if (secondOption == 1) {
                 colega = new Colega();
                 colega.setNome(nome);
@@ -140,7 +134,6 @@ public class TelaPrincipal implements PropertyChangeListener {
                 familia.setParentesco(parentesco);
                 agenda.criaContato(familia);
             }
-            //}
         } else {
             System.out.println("**** Opção Inválida ****");
         }
@@ -162,10 +155,9 @@ public class TelaPrincipal implements PropertyChangeListener {
 
         if (opcaoEvento == 1) {
             Balada balada = new Balada();
-            balada.insereContatos(agenda.getContatos(), 100);
-            //Ler Pico
             balada.setPico("O que é Pico?");
             balada.setData(date.getTime());
+            balada.insereContatos(agenda.getContatos(), 100);
             agenda.criarEvento(balada);
 
         } else if (opcaoEvento == 2) {
@@ -173,18 +165,18 @@ public class TelaPrincipal implements PropertyChangeListener {
             String sala = system.InputHandler.readString();
 
             Reuniao reuniao = new Reuniao();
-            reuniao.insereContatos(agenda.getContatos(), 100);
             reuniao.setData(date.getTime());
             reuniao.setSala(sala);
+            reuniao.insereContatos(agenda.getContatos(), 100);
             agenda.criarEvento(reuniao);
         } else if (opcaoEvento == 3) {
             System.out.println("Restaurante: ");
             String restaurante = system.InputHandler.readString();
 
             Almoco almoco = new Almoco();
-            almoco.insereContatos(agenda.getContatos(), 100);
             almoco.setData(date.getTime());
             almoco.setRestaurante(restaurante);
+            almoco.insereContatos(agenda.getContatos(), 100);
             agenda.criarEvento(almoco);
         } else {
             System.out.println("**** Opção Inválida ****");
@@ -194,26 +186,23 @@ public class TelaPrincipal implements PropertyChangeListener {
     public void mostrarConvidados() {
         int opt;
         Evento eventosAgenda[] = agenda.getEventos();
-        System.out.println("Tamanho dos Eventos:" + eventosAgenda.length);
 
         System.out.println("\n --- Escolha o evento que deseja mostrar os contatos --- ");
         System.out.println("1 - Balada");
         System.out.println("2 - Reunião");
         System.out.println("3 - Almoço");
         opt = system.InputHandler.readInt();
-
+        int i, j;
         if (opt == 1) {
-            for (int i = 0; i < eventosAgenda.length; i++) {
+            for(i = 0; i < eventosAgenda.length; i++) {
                 if (eventosAgenda[i] instanceof Balada) {
-                    //System.out.println("----> : " + eventosAgenda[i].getContatos());
-                    for (int j = 0; j < eventosAgenda[i].getContatos().length; j++) {
+                    System.out.println(eventosAgenda[i] instanceof Balada);
+                    for (j = 0; j < eventosAgenda[i].getContatos().length; j++) {
                         System.out.println(agenda.getContatos()[eventosAgenda[i].getContatos()[j]].getNome());
                     }
                 }
             }
         }
-
-
     }
 
     public void propertyChange(PropertyChangeEvent evt) {
@@ -227,16 +216,12 @@ public class TelaPrincipal implements PropertyChangeListener {
 		 */
             case 1:
                 this.criarContato(); // CHAMA O MÉTODO DE CRIAÇÃO DE CONTATOS
-
                 break;
             case 2:
-                //System.out.println("Criar Evento");
                 this.criarEvento();
                 break;
             case 3:
-                System.out.println("Mostrar Convidados de um Evento");
                 this.mostrarConvidados();
-
                 break;
         }
     }
