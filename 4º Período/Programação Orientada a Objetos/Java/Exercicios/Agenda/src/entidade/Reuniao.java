@@ -19,4 +19,8 @@ public class Reuniao extends Evento {
             }
         }
     }
+
+    public String getDadosEvento(){
+        return "Sala: " + this.getSala() + "\nData: " + this.getData();
+    }
 }

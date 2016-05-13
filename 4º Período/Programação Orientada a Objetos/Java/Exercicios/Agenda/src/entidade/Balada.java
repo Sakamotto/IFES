@@ -14,9 +14,14 @@ public class Balada extends Evento {
     public void insereContatos(Contato c[], int nc) {
         int i;
         for (i = 0; i < nc; i++) {
+
             if (c[i] instanceof Amigo) {
                 this.insereContato(i);
             }
         }
+    }
+
+    public String getDadosEvento(){
+        return "Pico: " + this.getPico() + "\nData: " + this.getData();
     }
 }

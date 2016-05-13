@@ -20,5 +20,9 @@ public class Almoco extends Evento {
         }
     }
 
+    public String getDadosEvento(){
+        return "Restaurante: " + this.getRestaurante() + "\nData: " + this.getData();
+    }
+
 
 }

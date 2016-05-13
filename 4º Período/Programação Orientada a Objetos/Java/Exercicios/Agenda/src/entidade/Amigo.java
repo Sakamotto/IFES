@@ -11,4 +11,8 @@ public class Amigo extends Contato {
 		this.nivel = nivel;
 	}
 
+	public String getDados(){
+		return "Nível: " + getNivel();
+	}
+
 }

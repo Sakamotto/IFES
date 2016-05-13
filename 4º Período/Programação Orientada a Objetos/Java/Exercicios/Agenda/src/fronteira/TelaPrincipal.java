@@ -196,9 +196,30 @@ public class TelaPrincipal implements PropertyChangeListener {
         if (opt == 1) {
             for(i = 0; i < eventosAgenda.length; i++) {
                 if (eventosAgenda[i] instanceof Balada) {
-                    System.out.println(eventosAgenda[i] instanceof Balada);
-                    for (j = 0; j < eventosAgenda[i].getContatos().length; j++) {
-                        System.out.println(agenda.getContatos()[eventosAgenda[i].getContatos()[j]].getNome());
+                    for (j = 0; j < agenda.getNcontatos(); j++) {
+                        System.out.println("Nome: " + agenda.getContatos()[eventosAgenda[i].getContatos()[j]].getNome());
+                        System.out.println(agenda.getContatos()[eventosAgenda[i].getContatos()[j]].getDados());// Imprime o nível
+                        System.out.println(eventosAgenda[i].getDadosEvento());
+                    }
+                }
+            }
+        }else if(opt == 2){
+            for(i = 0; i < eventosAgenda.length; i++) {
+                if (eventosAgenda[i] instanceof Reuniao) {
+                    for (j = 0; j < agenda.getNcontatos(); j++) {
+                        System.out.println("Nome: " + agenda.getContatos()[eventosAgenda[i].getContatos()[j]].getNome());
+                        System.out.println(agenda.getContatos()[eventosAgenda[i].getContatos()[j]].getDados());// Imprime o nível
+                        System.out.println(eventosAgenda[i].getDadosEvento());
+                    }
+                }
+            }
+        }else if(opt == 3){
+            for(i = 0; i < eventosAgenda.length; i++) {
+                if (eventosAgenda[i] instanceof Almoco) {
+                    for (j = 0; j < agenda.getNcontatos(); j++) {
+                        System.out.println("Nome: " + agenda.getContatos()[eventosAgenda[i].getContatos()[j]].getNome());
+                        System.out.println(agenda.getContatos()[eventosAgenda[i].getContatos()[j]].getDados());// Imprime o nível
+                        System.out.println(eventosAgenda[i].getDadosEvento());
                     }
                 }
             }

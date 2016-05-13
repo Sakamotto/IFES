@@ -34,4 +34,9 @@ public class Evento {
     public void setContatos(int[] contatos) {
         this.contatos = contatos;
     }
+
+    public String getDadosEvento(){
+        return null;
+    }
+
 }

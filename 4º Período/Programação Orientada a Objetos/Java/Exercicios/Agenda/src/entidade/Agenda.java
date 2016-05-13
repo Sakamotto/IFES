@@ -10,9 +10,9 @@ public class Agenda {
 
     public Agenda() {
         setEventos(new Evento[maxe]);
-        neventos = 0;
+        setNeventos(0);
         setContatos(new Contato[maxc]);
-        ncontatos = 0;
+        setNcontatos(0);
     }
 
 //    public void criarEvento(Evento e) {
@@ -31,28 +31,16 @@ public class Agenda {
 //    }
 
     public void criarEvento(Evento e) {
-//        int op;
-//        System.out.print("Almoço (1), Reunião (2) ou Balada (3)? ");
-//        op = system.InputHandler.readInt();
 
-        eventos[neventos] = e;
-
-//        if(e instanceof Balada){
-//            e.insereContatos(this.getContatos(), maxc);
-//        }else if(e instanceof Reuniao){
-//            e.insereContatos(this.getContatos(), maxc);
-//        }else if(e instanceof Almoco){
-//            e.insereContatos(this.getContatos(), maxc);
-//        }
-
-        eventos[neventos].insereContatos(this.getContatos(), 100);
-        neventos++;
+        eventos[getNeventos()] = e;
+        eventos[getNeventos()].insereContatos(this.getContatos(), 100);
+        setNeventos(getNeventos() + 1);
     }
 
     public void criaContato(Contato c) {
-        if (ncontatos < maxc) {
-            contatos[ncontatos] = c;
-            this.ncontatos++;
+        if (getNcontatos() < maxc) {
+            contatos[getNcontatos()] = c;
+            this.setNcontatos(this.getNcontatos() + 1);
         }
     }
 
@@ -70,5 +58,21 @@ public class Agenda {
 
     public void setEventos(Evento[] eventos) {
         this.eventos = eventos;
+    }
+
+    public int getNeventos() {
+        return neventos;
+    }
+
+    public void setNeventos(int neventos) {
+        this.neventos = neventos;
+    }
+
+    public int getNcontatos() {
+        return ncontatos;
+    }
+
+    public void setNcontatos(int ncontatos) {
+        this.ncontatos = ncontatos;
     }
 }
