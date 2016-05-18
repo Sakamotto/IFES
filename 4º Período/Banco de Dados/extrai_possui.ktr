@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>extrai_producao</name>
+    <name>extrai_possui</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
     </parameters>
@@ -67,9 +66,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2016&#x2f;02&#x2f;02 16&#x3a;48&#x3a;45.363</created_date>
+  <created_date>2016&#x2f;05&#x2f;17 08&#x3a;51&#x3a;36.412</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2016&#x2f;02&#x2f;02 16&#x3a;48&#x3a;45.363</modified_date>
+  <modified_date>2016&#x2f;05&#x2f;17 08&#x3a;51&#x3a;36.412</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -121,38 +120,16 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>Localhost_Incaper</name>
-    <server>localhost</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>Incaper</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
-      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
-  <hop> <from>Ordenar por Produto</from><to>Unir Produtos</to><enabled>Y</enabled> </hop>
-  <hop> <from>Unir Produtos</from><to>Sort rows</to><enabled>Y</enabled> </hop>
-  <hop> <from>Tabela Ano</from><to>Unir Produtos</to><enabled>Y</enabled> </hop>
-  <hop> <from>Tabela Mes</from><to>Merge Join</to><enabled>Y</enabled> </hop>
-  <hop> <from>Sort rows</from><to>Merge Join</to><enabled>Y</enabled> </hop>
-  <hop> <from>Merge Join</from><to>Tabela Produ&#xe7;&#xe3;o</to><enabled>Y</enabled> </hop>
-  <hop> <from>Ler arquivos</from><to>Ordenar por Produto</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ler arquivos</from><to>Ordenar por Municipio</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ordenar por Municipio</from><to>Unir Municipios</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ordena por Produto</from><to>Unir Produtos</to><enabled>Y</enabled> </hop>
+  <hop> <from>Tabela Municipio</from><to>Unir Municipios</to><enabled>Y</enabled> </hop>
+  <hop> <from>Tabela Produto</from><to>Unir Produtos</to><enabled>Y</enabled> </hop>
+  <hop> <from>Unir Municipios</from><to>Ordena por Produto</to><enabled>Y</enabled> </hop>
+  <hop> <from>Tabela Produ&#xe7;&#xe3;o</from><to>Unir Produ&#xe7;&#xe3;o</to><enabled>Y</enabled> </hop>
+  <hop> <from>Unir Produtos</from><to>Unir Produ&#xe7;&#xe3;o</to><enabled>Y</enabled> </hop>
+  <hop> <from>Unir Produ&#xe7;&#xe3;o</from><to>Sa&#xed;da Possui</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Ler arquivos</name>
@@ -446,14 +423,14 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>111</xloc>
-      <yloc>185</yloc>
+      <xloc>86</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Merge Join</name>
+    <name>Unir Produtos</name>
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -464,24 +441,58 @@
            <schema_name/>
            </partitioning>
 <join_type>INNER</join_type>
-<step1>Sort rows</step1>
-<step2>Tabela Mes</step2>
+<step1>Ordena por Produto</step1>
+<step2>Tabela Produto</step2>
     <keys_1>
-      <key>MES</key>
+      <key>COD_PRODUTO</key>
     </keys_1>
     <keys_2>
-      <key>codigo_mes</key>
+      <key>codigo_produto</key>
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>776</xloc>
-      <yloc>182</yloc>
+      <xloc>663</xloc>
+      <yloc>219</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Ordenar por Produto</name>
+    <name>Ordenar por Municipio</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>COD_MUNICIPIO</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>213</xloc>
+      <yloc>223</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ordena por Produto</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -508,48 +519,14 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>328</xloc>
-      <yloc>186</yloc>
+      <xloc>510</xloc>
+      <yloc>223</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Sort rows</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>ANO</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>616</xloc>
-      <yloc>186</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Tabela Ano</name>
+    <name>Tabela Municipio</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -560,7 +537,7 @@
            <schema_name/>
            </partitioning>
     <connection>BDIncaper</connection>
-    <sql>SELECT nome, codigo_ano FROM ano ORDER BY codigo_ano&#xa;</sql>
+    <sql>SELECT codigo_municipio, nome, codigo_micro FROM municipio&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -568,14 +545,14 @@
     <lazy_conversion_active>Y</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>506</xloc>
-      <yloc>316</yloc>
+      <xloc>381</xloc>
+      <yloc>353</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Tabela Mes</name>
+    <name>Tabela Produto</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -586,7 +563,7 @@
            <schema_name/>
            </partitioning>
     <connection>BDIncaper</connection>
-    <sql>SELECT&#xa;  codigo_mes&#xa;, nome&#xa;FROM mes&#xa;ORDER BY codigo_mes&#xa;</sql>
+    <sql>SELECT codigo_produto, nome, codigo_grupo FROM produto&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -594,14 +571,96 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>776</xloc>
-      <yloc>58</yloc>
+      <xloc>663</xloc>
+      <yloc>95</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Unir Municipios</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<join_type>INNER</join_type>
+<step1>Ordenar por Municipio</step1>
+<step2>Tabela Municipio</step2>
+    <keys_1>
+      <key>COD_MUNICIPIO</key>
+    </keys_1>
+    <keys_2>
+      <key>codigo_municipio</key>
+    </keys_2>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>380</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
     <name>Tabela Produ&#xe7;&#xe3;o</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>BDIncaper</connection>
+    <sql>SELECT codigo_producao, ano.codigo_ano, ano.nome FROM producao&#xa;INNER JOIN ano ON &#x28;ano.codigo_ano &#x3d; producao.codigo_ano&#x29;&#xa;ORDER BY ano.nome&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>806</xloc>
+      <yloc>94</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Unir Produ&#xe7;&#xe3;o</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<join_type>INNER</join_type>
+<step1>Unir Produtos</step1>
+<step2>Tabela Produ&#xe7;&#xe3;o</step2>
+    <keys_1>
+      <key>ANO</key>
+    </keys_1>
+    <keys_2>
+      <key>nome</key>
+    </keys_2>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>805</xloc>
+      <yloc>218</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sa&#xed;da Possui</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -613,7 +672,7 @@
            </partitioning>
     <connection>BDIncaper</connection>
     <schema/>
-    <table>producao</table>
+    <table>possui</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
@@ -630,83 +689,27 @@
     <return_field/>
     <fields>
         <field>
-          <column_name>irrigado</column_name>
-          <stream_name>IRRIGADO</stream_name>
+          <column_name>codigo_municipio</column_name>
+          <stream_name>codigo_municipio</stream_name>
         </field>
         <field>
-          <column_name>area_colhida</column_name>
-          <stream_name>COLHIDA</stream_name>
+          <column_name>codigo_produto</column_name>
+          <stream_name>codigo_produto</stream_name>
         </field>
         <field>
-          <column_name>producao</column_name>
-          <stream_name>PRODUCAO</stream_name>
-        </field>
-        <field>
-          <column_name>area_plantada</column_name>
-          <stream_name>PLANTADA</stream_name>
-        </field>
-        <field>
-          <column_name>area_em_formacao</column_name>
-          <stream_name>EM_FORMACAO</stream_name>
-        </field>
-        <field>
-          <column_name>codigo_ano</column_name>
-          <stream_name>codigo_ano</stream_name>
-        </field>
-        <field>
-          <column_name>codigo_mes</column_name>
-          <stream_name>codigo_mes</stream_name>
+          <column_name>codigo_producao</column_name>
+          <stream_name>codigo_producao</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>917</xloc>
-      <yloc>185</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Unir Produtos</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<join_type>INNER</join_type>
-<step1>Ordenar por Produto</step1>
-<step2>Tabela Ano</step2>
-    <keys_1>
-      <key>ANO</key>
-    </keys_1>
-    <keys_2>
-      <key>nome</key>
-    </keys_2>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>504</xloc>
-      <yloc>186</yloc>
+      <xloc>966</xloc>
+      <yloc>216</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step_error_handling>
-      <error>
-        <source_step>Ler arquivos</source_step>
-        <target_step/>
-        <is_enabled>Y</is_enabled>
-        <nr_valuename/>
-        <descriptions_valuename/>
-        <fields_valuename/>
-        <codes_valuename/>
-        <max_errors/>
-        <max_pct_errors/>
-        <min_pct_rows/>
-      </error>
   </step_error_handling>
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>
