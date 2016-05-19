@@ -146,13 +146,19 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Ordenar por Produto</from><to>Unir Produtos</to><enabled>Y</enabled> </hop>
-  <hop> <from>Unir Produtos</from><to>Sort rows</to><enabled>Y</enabled> </hop>
-  <hop> <from>Tabela Ano</from><to>Unir Produtos</to><enabled>Y</enabled> </hop>
-  <hop> <from>Tabela Mes</from><to>Merge Join</to><enabled>Y</enabled> </hop>
-  <hop> <from>Sort rows</from><to>Merge Join</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ordenar por Ano</from><to>Unir Ano</to><enabled>Y</enabled> </hop>
+  <hop> <from>Unir Ano</from><to>Ordena por Mes</to><enabled>Y</enabled> </hop>
+  <hop> <from>Tabela Ano</from><to>Unir Ano</to><enabled>Y</enabled> </hop>
+  <hop> <from>Tabela Mes</from><to>Unir Mes</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ordena por Mes</from><to>Unir Mes</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ler arquivos</from><to>Ordenar por Ano</to><enabled>Y</enabled> </hop>
+  <hop> <from>Unir Mes</from><to>Ordena Produtos</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ordena Produtos</from><to>Unir Produto</to><enabled>Y</enabled> </hop>
+  <hop> <from>Tabela Produto</from><to>Unir Produto</to><enabled>Y</enabled> </hop>
+  <hop> <from>Unir Produto</from><to>Ordena Municipio</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ordena Municipio</from><to>Merge Join</to><enabled>Y</enabled> </hop>
+  <hop> <from>Tabela Municipio</from><to>Merge Join</to><enabled>Y</enabled> </hop>
   <hop> <from>Merge Join</from><to>Tabela Produ&#xe7;&#xe3;o</to><enabled>Y</enabled> </hop>
-  <hop> <from>Ler arquivos</from><to>Ordenar por Produto</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Ler arquivos</name>
@@ -446,14 +452,14 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>111</xloc>
-      <yloc>185</yloc>
+      <xloc>41</xloc>
+      <yloc>169</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Merge Join</name>
+    <name>Unir Mes</name>
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -464,7 +470,7 @@
            <schema_name/>
            </partitioning>
 <join_type>INNER</join_type>
-<step1>Sort rows</step1>
+<step1>Ordena por Mes</step1>
 <step2>Tabela Mes</step2>
     <keys_1>
       <key>MES</key>
@@ -474,48 +480,14 @@
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>776</xloc>
-      <yloc>182</yloc>
+      <xloc>600</xloc>
+      <yloc>167</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Ordenar por Produto</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>COD_PRODUTO</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>328</xloc>
-      <yloc>186</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Sort rows</name>
+    <name>Ordenar por Ano</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -542,8 +514,42 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>616</xloc>
-      <yloc>186</yloc>
+      <xloc>191</xloc>
+      <yloc>172</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ordena por Mes</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>MES</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>471</xloc>
+      <yloc>171</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -568,8 +574,8 @@
     <lazy_conversion_active>Y</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>506</xloc>
-      <yloc>316</yloc>
+      <xloc>347</xloc>
+      <yloc>300</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -594,8 +600,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>776</xloc>
-      <yloc>58</yloc>
+      <xloc>597</xloc>
+      <yloc>44</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -630,10 +636,6 @@
     <return_field/>
     <fields>
         <field>
-          <column_name>irrigado</column_name>
-          <stream_name>IRRIGADO</stream_name>
-        </field>
-        <field>
           <column_name>area_colhida</column_name>
           <stream_name>COLHIDA</stream_name>
         </field>
@@ -644,6 +646,10 @@
         <field>
           <column_name>area_plantada</column_name>
           <stream_name>PLANTADA</stream_name>
+        </field>
+        <field>
+          <column_name>irrigado</column_name>
+          <stream_name>IRRIGADO</stream_name>
         </field>
         <field>
           <column_name>area_em_formacao</column_name>
@@ -657,17 +663,25 @@
           <column_name>codigo_mes</column_name>
           <stream_name>codigo_mes</stream_name>
         </field>
+        <field>
+          <column_name>codigo_municipio</column_name>
+          <stream_name>COD_MUNICIPIO</stream_name>
+        </field>
+        <field>
+          <column_name>codigo_produto</column_name>
+          <stream_name>COD_PRODUTO</stream_name>
+        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>917</xloc>
-      <yloc>185</yloc>
+      <xloc>854</xloc>
+      <yloc>531</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Unir Produtos</name>
+    <name>Unir Ano</name>
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -678,7 +692,7 @@
            <schema_name/>
            </partitioning>
 <join_type>INNER</join_type>
-<step1>Ordenar por Produto</step1>
+<step1>Ordenar por Ano</step1>
 <step2>Tabela Ano</step2>
     <keys_1>
       <key>ANO</key>
@@ -688,8 +702,184 @@
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>504</xloc>
-      <yloc>186</yloc>
+      <xloc>343</xloc>
+      <yloc>167</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Unir Produto</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<join_type>INNER</join_type>
+<step1>Ordena Produtos</step1>
+<step2>Tabela Produto</step2>
+    <keys_1>
+      <key>COD_PRODUTO</key>
+    </keys_1>
+    <keys_2>
+      <key>codigo_produto</key>
+    </keys_2>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>849</xloc>
+      <yloc>162</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ordena Produtos</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>COD_PRODUTO</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>718</xloc>
+      <yloc>167</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Tabela Produto</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>BDIncaper</connection>
+    <sql>SELECT codigo_produto FROM produto &#xa;order by codigo_produto&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>850</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Tabela Municipio</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>BDIncaper</connection>
+    <sql>SELECT codigo_municipio FROM municipio&#xa;order by codigo_municipio&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1013</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ordena Municipio</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>COD_MUNICIPIO</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>849</xloc>
+      <yloc>279</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge Join</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<join_type>INNER</join_type>
+<step1>Ordena Municipio</step1>
+<step2>Tabela Municipio</step2>
+    <keys_1>
+      <key>COD_MUNICIPIO</key>
+    </keys_1>
+    <keys_2>
+      <key>codigo_municipio</key>
+    </keys_2>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>847</xloc>
+      <yloc>396</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
