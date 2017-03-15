@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by 20142bsi0054 on 08/03/2017.
  */
@@ -67,16 +70,52 @@ public class TadRecursivos {
         return this.raizQuadrada(num, num);
     }
 
+    /*
+    * Pesquisar a existência do elemento e na lista L. Retorna True caso exista, False caso contrário
+    *
+    * */
+    public boolean search(int elem, List<Integer> lista){
+
+        if(lista.size() == 0){
+            return false;
+        }else{
+            if(lista.get(0) == elem){
+                return true;
+            }else{
+                return search(elem, lista.subList(1, lista.size()));
+            }
+        }
+    }
+
+    /*
+    * Inverter uma string de entrada.
+    * */
+    public String inverte(String palavra){
+        if(palavra.length() == 1){
+            return palavra.substring(0);
+        }else{
+            return palavra.charAt(palavra.length() - 1) + inverte(palavra.substring(0, palavra.length() - 1));
+
+        }
+    }
+
 
     public static void main(String[] args){
         TadRecursivos t = new TadRecursivos();
         int [] nums = {1,2,3};
+        ArrayList<Integer> array = new ArrayList<>();
+        array.add(1);
+        array.add(4);
+        array.add(6);
+        array.add(10);
 
         System.out.println(t.mult(3, 5));
         System.out.println(t.soma(nums, nums.length));
         System.out.println(t.divisao(7,-2));
         System.out.println(t.raiz(5));
-
+        System.out.println(t.search(4, array));
+//        System.out.println(t.inverte("Oi, eu sou Goku!"));
+        System.out.println(t.inverte("Oi, eu sou Goku!"));
     }
 
 
