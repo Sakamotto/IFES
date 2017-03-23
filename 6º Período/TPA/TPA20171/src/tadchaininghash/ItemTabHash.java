@@ -1,9 +1,11 @@
-package tadhash;
+package tadchaininghash;
 
 /**
  * Created by cristian on 22/03/17.
  */
-public class ItemTabHash {
+
+// Seria bom utilizar Generics para chave e valor ...
+public class ItemTabHash{
 
     private String key;
     private Dado dado;

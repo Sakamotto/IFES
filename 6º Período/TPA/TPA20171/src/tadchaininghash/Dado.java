@@ -1,12 +1,20 @@
-package tadhash;
+package tadchaininghash;
 
 /**
  * Created by cristian on 22/03/17.
  */
+
 public class Dado {
 
     private String nome;
     private String telefone;
+
+    public Dado(){}
+
+    public Dado(String nome, String telefone){
+        this.nome = nome;
+        this.telefone = telefone;
+    }
 
     public String getNome() {
         return nome;
