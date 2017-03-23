@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TabHash {
 
-    private LinkedList<ItemTabHash>[] content;
+    private LinkedList<ItemTabHash<String, Dado>>[] content;
     private final int base = 16;
 
     public TabHash(int size){
@@ -48,10 +48,10 @@ public class TabHash {
         String keyS = (String) key;
 
         int pos = polynomialAcc(keyS);
-        LinkedList<ItemTabHash> toAdd = new LinkedList<>();
+        LinkedList<ItemTabHash<String, Dado>> toAdd = new LinkedList<>();
 
         if(content[pos] == null){
-            toAdd.add(new ItemTabHash((String)key, (Dado)value));
+            toAdd.add(new ItemTabHash<>((String)key, (Dado)value));
             content[pos] = toAdd;
         }else{
             // Se já existe a key passada como parâmetro, então o valor é sobrescrito
@@ -59,7 +59,7 @@ public class TabHash {
             if(i != -1){
                 content[pos].get(i).setDado((Dado) value);
             }else{
-                content[pos].add(new ItemTabHash(keyS, (Dado)value));
+                content[pos].add(new ItemTabHash<>(keyS, (Dado)value));
             }
         }
     }
@@ -124,21 +124,41 @@ public class TabHash {
      * @return retorna uma linked list com seus ItemTabHash's com base na KEY fornecida.
      */
 
-    public LinkedList<ItemTabHash> get(Object key){
+    public LinkedList<ItemTabHash<String, Dado>> get(Object key){
         String keyS = (String) key;
         int index = polynomialAcc(keyS);
 
         return content[index];
     }
 
+    /**
+     *
+     * @return retorna um List<Object> com todas as chaves</>
+     */
     public List<Object> getKeys(){
         List<Object> keyList = new ArrayList<>();
 
         for(int i = 0; i < content.length; i++){
             for(int j = 0; j < content[i].size(); j++){
-                keyList.add(content[i].get(j));
+                keyList.add(content[i].get(j).getKey());
             }
         }
         return keyList;
     }
+
+    /**
+     *
+     * @return retorna um List<Object></> com todos os valores
+     */
+    public List<Object> getElements(){
+        List<Object> valueList = new ArrayList<>();
+
+        for(int i = 0; i < content.length; i++){
+            for(int j = 0; j < content[i].size(); j++){
+                valueList.add(content[i].get(j).getDado());
+            }
+        }
+        return valueList;
+    }
+
 }

@@ -5,29 +5,29 @@ package tadchaininghash;
  */
 
 // Seria bom utilizar Generics para chave e valor ...
-public class ItemTabHash{
+public class ItemTabHash<K, V>{
 
-    private String key;
-    private Dado dado;
+    private K key;
+    private V dado;
 
-    public ItemTabHash(String key, Dado dado){
+    public ItemTabHash(K key, V dado){
         this.setKey(key);
         this.setDado(dado);
     }
 
-    public String getKey() {
+    public K getKey() {
         return key;
     }
 
-    public void setKey(String key) {
+    public void setKey(K key) {
         this.key = key;
     }
 
-    public Dado getDado() {
+    public V getDado() {
         return dado;
     }
 
-    public void setDado(Dado dado) {
+    public void setDado(V dado) {
         this.dado = dado;
     }
 }
