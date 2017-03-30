@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -12,18 +13,19 @@ void error(char *msg)
 
 int main(int argc, char *argv[])
 {
-    int sockfd, portno, n;
-
     struct sockaddr_in serv_addr;
     struct hostent *server;
+    int sockfd, portno, n;
+    char buffer[256], buffer_out[256];
 
-    char buffer[256];
     if (argc < 3) {
        fprintf(stderr,"usage %s hostname port\n", argv[0]);
        exit(0);
     }
+
     portno = atoi(argv[2]);
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
+
     if (sockfd < 0) 
         error("ERROR opening socket");
     server = gethostbyname(argv[1]);
@@ -42,26 +44,36 @@ int main(int argc, char *argv[])
         error("ERROR connecting");
 	}
     
-    while(strcmp(buffer, "bye\n") != 0){
-		printf("Please enter the message: ");
-		bzero(buffer, 256);
-		fgets(buffer, 255, stdin);
+    while(1){
+		printf("[Client] Please enter the message: ");
 		
-		n = write(sockfd, buffer, strlen(buffer) -1);
+        //bzero(buffer, 256);
+        bzero(buffer_out, 256);
+
+		fgets(buffer_out, 255, stdin);
+
+        n = write(sockfd, buffer_out, strlen(buffer_out) -1);
+        
+        if((strcmp(buffer_out, "bye") == 0)){
+            break;
+        }
 		
 		if (n < 0) {
 			error("ERROR writing to socket");
 		}
 		
-		//~ bzero(buffer,256);
-		//~ n = read(sockfd,buffer,255);
-		//~ printf("*** BUFFER: %s ", buffer);
+		bzero(buffer,256);
+
+		n = read(sockfd, buffer, 255);
+
+        if((strcmp(buffer, "bye") == 0)){
+            break;
+        }
 		
-		//~ if (n < 0) 
-			 //~ error("ERROR reading from socket");
+		if (n < 0) 
+			 error("ERROR reading from socket");
 		
-		//~ printf("%s\n",buffer);
-		//~ bzero(buffer, 256);
+		printf("Recebido: %s\n", buffer);
 	}
     return 0;
 }
