@@ -16,7 +16,7 @@ void error(char *msg)
 int main(int argc, char *argv[])
 {
      int sockfd, newsockfd, portno, clilen;
-     char buffer[256], buffer_out[256];
+     char buffer[256];
      struct sockaddr_in serv_addr, cli_addr;
      int n;
      if (argc < 2) {
@@ -34,50 +34,33 @@ int main(int argc, char *argv[])
      serv_addr.sin_addr.s_addr = INADDR_ANY;
      serv_addr.sin_port = htons(portno);
      
-     if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0)
+     if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) 
               error("ERROR on binding");
      
-     listen(sockfd,5);
+     listen(sockfd, 5);
      clilen = sizeof(cli_addr);
      newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
-
      if (newsockfd < 0) 
           error("ERROR on accept");
+     bzero(buffer,256);
      
-     //(strcmp(buffer, "bye") != 0) && (strcmp(buffer_out, "bye") != 0)
-
-     while(1){
-        bzero(buffer, 256);
-        n = read(newsockfd, buffer, 255);
-
-        if (n < 0){
-            error("ERROR reading from socket");
-        }
-
-        if(strcmp(buffer, "bye") == 0){
-            n = write(newsockfd, "bye", strlen("bye"));
-            exit(0);
-        }
-
-        printf("Here is the message: %s\n", buffer);
-
-        bzero(buffer_out, 256);
-        printf("[Server] Please enter the message: ");
-        fgets(buffer_out, 255, stdin);
-
-        n = write(newsockfd, buffer_out, strlen(buffer_out) -1);
-		printf("OUT: %s\n", buffer_out);
-		
-        if((strcmp(buffer_out, "bye\n") == 0)){
-			exit(0);
-        }
-
-        if (n < 0){
-            error("ERROR writing to socket");
-        }
-
-        // bzero(buffer, 256);
-        // n = read(newsockfd, buffer, 255);
+     n = read(newsockfd, buffer, 255);
+     
+     while(strcmp(buffer, "bye") != 0){
+		 if (n < 0){
+			 error("ERROR reading from socket");
+		 }
+		 
+		 printf("Here is the message: %s\n", buffer);
+		 n = write(newsockfd, "I got your message", 18);
+		 
+		 if (n < 0){
+			 error("ERROR writing to socket");
+		 }
+		 
+		 bzero(buffer, 256);
+		 
+		 n = read(newsockfd, buffer, 255);
 	 }
      
 
