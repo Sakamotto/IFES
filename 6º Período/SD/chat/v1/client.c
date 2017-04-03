@@ -46,6 +46,7 @@ void* client_write(void* sock_server){
 	int server = *(int*) sock_server;
 	char buffer_out[256];
 	bzero(buffer_out, 256);
+	
 	while(strcmp(buffer_out, "bye") != 0){
 		printf("[Client] Please enter the message: ");
 		
@@ -105,7 +106,7 @@ int main(int argc, char *argv[])
 	// Cria as threads para ouvir e escrever	
     pthread_create(&thread_write, NULL, client_write, &sockfd);
 	pthread_create(&thread_read, NULL, client_read, &sockfd);
-
+	
 	pthread_join(thread_read, NULL);
 	pthread_join(thread_write, NULL);
 

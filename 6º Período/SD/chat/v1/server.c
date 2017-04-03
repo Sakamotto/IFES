@@ -23,6 +23,7 @@ void* server_read(void* sock_client){
 	int client = *(int*) sock_client;
 	char buffer[256];
 	bzero(buffer, 256);
+	
 	while(strcmp(buffer, "bye") != 0){
 		bzero(buffer, 256);
 		n = read(client, buffer, 255);
@@ -35,7 +36,7 @@ void* server_read(void* sock_client){
 	}
 	printf("[server_read] NÃO ENTREI NO WHILE\n");
 	n = write(client, "bye", strlen("bye"));
-	//exit(0);	
+	exit(0);	
 	/*
 	if(strcmp(buffer, "bye") == 0){
 		

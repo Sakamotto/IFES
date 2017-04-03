@@ -1,0 +1,2 @@
+Criaria um servidor que fica escutando as conexões. Nele seriam criadas 10 threads (read e write), uma para cada cliente.
+O Servidor seria responsável por reenviar cada mensagem recebida para todos os clientes.
