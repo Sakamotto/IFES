@@ -17,20 +17,25 @@ void error(char *msg)
 
 void* client_read(void* sock_server){
 	int n;
-	int server = (int) sock_server;
+	int server = *(int*) sock_server;
 	char buffer[256];
-	
 	bzero(buffer,256);
-	n = read(server, buffer, 255);
+	
+	while(strcmp(buffer, "bye") != 0){
+		bzero(buffer,256);
+		n = read(server, buffer, 255);
+		if (n < 0) 
+			error("ERROR reading from socket");
 
-	if((strcmp(buffer, "bye") == 0)){
-		exit(0);
+		printf("Recebido: %s\n", buffer);
 	}
-	
-	if (n < 0) 
-		 error("ERROR reading from socket");
-	
-	printf("Recebido: %s\n", buffer);
+	//printf("[client_read] NÃO ENTREI NO WHILE\n");
+	n = write(server, "bye", strlen("bye"));
+	exit(0);	
+
+	/*if((strcmp(buffer, "bye") == 0)){
+		exit(0);
+	}*/	
 		
 	return 0;
 }
@@ -38,24 +43,28 @@ void* client_read(void* sock_server){
 
 void* client_write(void* sock_server){
 	int n;
-	int server = (int) sock_server;
+	int server = *(int*) sock_server;
 	char buffer_out[256];
-	
-	printf("[Client] Please enter the message: ");
-		
 	bzero(buffer_out, 256);
+	while(strcmp(buffer_out, "bye") != 0){
+		printf("[Client] Please enter the message: ");
+		
+		bzero(buffer_out, 256);
 
-	fgets(buffer_out, 255, stdin);
+		fgets(buffer_out, 255, stdin);
 
-	n = write(server, buffer_out, strlen(buffer_out) -1);
+		n = write(server, buffer_out, strlen(buffer_out) -1);
+		if (n < 0) {
+			error("ERROR writing to socket");
+		}
+	}
+	printf("[client_write] NÃO ENTREI NO WHILE\n");
+	exit(0);
 	
-	if((strcmp(buffer_out, "bye") == 0)){
+	/*if((strcmp(buffer_out, "bye") == 0)){
 		exit(0);
-	}
+	}*/
 	
-	if (n < 0) {
-		error("ERROR writing to socket");
-	}
 		
 	return 0;
 }
@@ -93,26 +102,23 @@ int main(int argc, char *argv[])
         error("ERROR connecting");
 	}
 	
-	while(1){
-		pthread_create(&thread_write, NULL, client_write, (void*) sockfd);
-	}
-	
-	while(1){
-		pthread_create(&thread_read, NULL, client_read, (void*) sockfd);
-	}
-    
-    /*while(1){
+	// Cria as threads para ouvir e escrever	
+    pthread_create(&thread_write, NULL, client_write, &sockfd);
+	pthread_create(&thread_read, NULL, client_read, &sockfd);
+
+	pthread_join(thread_read, NULL);
+	pthread_join(thread_write, NULL);
+
+
+    //while(1){
+		// client_write((void*) sockfd);
+		// client_read((void*) sockfd);
 		
-		//client_write((void*) sockfd);
-		//client_read((void*) sockfd);		
+		// pthread_create(&thread_write, NULL, client_write, (void*) sockfd);
+		// pthread_create(&thread_read, NULL, client_read, (void*) sockfd);
 		
-		pthread_create(&thread_write, NULL, client_write, (void*) sockfd);
-		pthread_create(&thread_read, NULL, client_read, (void*) sockfd);
-		
-		pthread_join(thread_read, NULL);
-		pthread_join(thread_write, NULL);
-		
-		
-	}*/
+		// pthread_join(thread_read, NULL);
+		// pthread_join(thread_write, NULL);
+	//}
     return 0;
 }

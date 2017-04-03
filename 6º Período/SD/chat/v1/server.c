@@ -20,48 +20,57 @@ void error(char *msg)
 
 void* server_read(void* sock_client){
 	int n;
-	int client = (int) sock_client;
+	int client = *(int*) sock_client;
 	char buffer[256];
-	
 	bzero(buffer, 256);
-        
-	n = read(client, buffer, 255);
+	while(strcmp(buffer, "bye") != 0){
+		bzero(buffer, 256);
+		n = read(client, buffer, 255);
 
-	if (n < 0){
-		error("ERROR reading from socket");
+		if (n < 0){
+			error("ERROR reading from socket");
+		}
+		printf("Here is the message: %s\n", buffer);
+
 	}
-
+	printf("[server_read] NÃO ENTREI NO WHILE\n");
+	n = write(client, "bye", strlen("bye"));
+	//exit(0);	
+	/*
 	if(strcmp(buffer, "bye") == 0){
-		n = write(client, "bye", strlen("bye"));
+		
 		//pthread_exit((void*) END_CHAT);
 		exit(0);
-	}
-
-	printf("Here is the message: %s\n", buffer);
+	}*/
 	
 	return 0;
 }
 
 void* server_write(void* sock_client){
 	int n;
-	int client = (int) sock_client;
+	int client = *(int*) sock_client;
 	char buffer_out[256];
-	
 	bzero(buffer_out, 256);
-	printf("[Server] Please enter the message: ");
-	fgets(buffer_out, 255, stdin);
+	while(strcmp(buffer_out, "bye\n") != 0){
+		bzero(buffer_out, 256);
+		printf("[Server] Please enter the message: ");
+		fgets(buffer_out, 255, stdin);
 
-	n = write(client, buffer_out, strlen(buffer_out) -1);
+		n = write(client, buffer_out, strlen(buffer_out) -1);
 
-	if((strcmp(buffer_out, "bye\n") == 0)){
+		if (n < 0){
+			error("ERROR writing to socket");
+		}
+	}
+	printf("[server_write] NÃO ENTREI NO WHILE\n");
+	exit(0);
+	
+
+	/*if((strcmp(buffer_out, "bye\n") == 0)){
 		//pthread_exit((void*) END_CHAT);
 		exit(0);
-	}
+	}*/
 
-	if (n < 0){
-		error("ERROR writing to socket");
-	}
-	
 	return 0;		
 }
 
@@ -69,7 +78,7 @@ void* server_write(void* sock_client){
 int main(int argc, char *argv[])
 {
 	int sockfd, newsockfd, portno;
-	unsigned int clilen;
+	int clilen;
 	struct sockaddr_in serv_addr, cli_addr;
 
 	pthread_t thread_read, thread_write;
@@ -100,24 +109,22 @@ int main(int argc, char *argv[])
 	if (newsockfd < 0) 
 		error("ERROR on accept");
 
-	while(1){
-		pthread_create(&thread_read, NULL, server_read, (void*)newsockfd);
-	}
+
+	// Cria as threads para ouvir e escrever
+	pthread_create(&thread_read, NULL, server_read, &newsockfd);
+	pthread_create(&thread_write, NULL, server_write, &newsockfd);
+
+	pthread_join(thread_read, NULL);
+	pthread_join(thread_write, NULL);
+
 	
-	while(1){
-		pthread_create(&thread_write, NULL, server_write, (void*)newsockfd);
-	}
-	
-	/*while(1){
+	//while(1){
 		//server_read((void*)newsockfd);
 		//server_write((void*)newsockfd);
 		
-		pthread_create(&thread_read, NULL, server_read, (void*)newsockfd);		
-		pthread_create(&thread_write, NULL, server_write, (void*)newsockfd);
-		
-		pthread_join(thread_write, NULL);
-		pthread_join(thread_read, NULL);
-	}*/
+		// pthread_join(thread_write, NULL);
+		// pthread_join(thread_read, NULL);
+	//}
 
 
 	return 0; 
