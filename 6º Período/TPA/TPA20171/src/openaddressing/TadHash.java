@@ -7,7 +7,7 @@ import tadchaininghash.Dado;
  */
 public class TadHash {
 
-    Dado[] content;
+    /*Dado[] content;
     private final int base = 16;
     private int functionOpt;
 
@@ -37,7 +37,7 @@ public class TadHash {
         if(this.content[index] == null){
             this.content[index] = (Dado) value;
         }else{
-            if(this.content[index].getTelefone() == key){
+            if(this.content[index] == key){
                 this.content[index] = (Dado) value;
             }else{
                 while(this.content[index] != null){
@@ -103,6 +103,6 @@ public class TadHash {
         }
 
         return (int)(f % content.length);
-    }
+    }*/
 
 }

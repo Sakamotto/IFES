@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TabHash {
 
-    private LinkedList<ItemTabHash<String, Dado>>[] content;
+    private LinkedList<ItemTabHash>[] content;
     private final int base = 16;
 
     public TabHash(int size){
@@ -20,7 +20,7 @@ public class TabHash {
     /**
      *
      * @param key
-     * @return retorna o index na LinkedList, onde ele achou a KEY, ou -1 se não econtrar.
+     * @return retorna o index na LinkedList onde ele achou a KEY, ou -1 se não econtrar.
      */
 
     private int searchKey(Object key){
@@ -34,7 +34,8 @@ public class TabHash {
                 return index;
             }
         }
-        return index;
+
+        return -1;
     }
 
     /**
@@ -48,33 +49,33 @@ public class TabHash {
         String keyS = (String) key;
 
         int pos = polynomialAcc(keyS);
-        LinkedList<ItemTabHash<String, Dado>> toAdd = new LinkedList<>();
+        LinkedList<ItemTabHash> toAdd = new LinkedList<>();
 
         if(content[pos] == null){
-            toAdd.add(new ItemTabHash<>((String)key, (Dado)value));
+            toAdd.add(new ItemTabHash((String)key, (Dado)value));
             content[pos] = toAdd;
         }else{
-            // Se já existe a key passada como parâmetro, então o valor é sobrescrito
-            int i = searchKey(keyS);
+            // Se já existe o key passada como parâmetro, então o valor é sobrescrito
+            int i = searchKey(key);
             if(i != -1){
                 content[pos].get(i).setDado((Dado) value);
             }else{
-                content[pos].add(new ItemTabHash<>(keyS, (Dado)value));
+                content[pos].add(new ItemTabHash(keyS, (Dado)value));
             }
         }
     }
 
-    public boolean remove(Object key){
+    public Object remove(Object key){
         String keyS = (String)key;
         int index = polynomialAcc(keyS);
         int indexLinkedList = searchKey(key);
+        Object removed = null;
 
         if(indexLinkedList != -1){
+            removed = content[index].get(indexLinkedList);
             content[index].remove(indexLinkedList);
-            return true;
         }
-
-        return false;
+        return removed;
     }
 
     /**
@@ -107,7 +108,7 @@ public class TabHash {
      * @return Este método retorna um objeto do tipo Dado a partir de uma determinada KEY procurada. Caso não encontre, retorna null.
      *
      */
-    public Dado getElement(Object key){
+    public Object getElement(Object key){
         String keyS = (String) key;
         int index = polynomialAcc(keyS);
         int indexLinkedList = searchKey(key);
@@ -123,8 +124,7 @@ public class TabHash {
      * @param key
      * @return retorna uma linked list com seus ItemTabHash's com base na KEY fornecida.
      */
-
-    public LinkedList<ItemTabHash<String, Dado>> get(Object key){
+    public LinkedList<ItemTabHash> get(Object key){
         String keyS = (String) key;
         int index = polynomialAcc(keyS);
 

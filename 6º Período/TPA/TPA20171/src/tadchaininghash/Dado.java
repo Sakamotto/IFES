@@ -7,13 +7,11 @@ package tadchaininghash;
 public class Dado {
 
     private String nome;
-    private String telefone;
 
     public Dado(){}
 
-    public Dado(String nome, String telefone){
+    public Dado(String nome){
         this.nome = nome;
-        this.telefone = telefone;
     }
 
     public String getNome() {
@@ -24,12 +22,8 @@ public class Dado {
         this.nome = nome;
     }
 
-    public String getTelefone() {
-        return telefone;
+    @Override
+    public String toString() {
+        return this.nome;
     }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
 }
