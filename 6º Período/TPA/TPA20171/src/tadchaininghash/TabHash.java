@@ -1,5 +1,6 @@
 package tadchaininghash;
 
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,13 +9,35 @@ import java.util.List;
  * Created by cristian on 22/03/17.
  */
 
-public class TabHash {
+class MyHashEngine extends HashEngine{
+
+    @Override
+    public int hashFunction(Object key) {
+        String keyS = (String) key;
+        double f = 0;
+        int base = 33;
+
+        for(int i = 0; i < keyS.length(); i++){
+            f = keyS.codePointAt(i) * Math.pow(base, i);
+        }
+        return (int)f;
+    }
+}
+
+public class TabHash implements Dictionary{
 
     private LinkedList<ItemTabHash>[] content;
-    private final int base = 16;
+    private HashEngine hashEngine;
+    private int quant = 0;
 
     public TabHash(int size){
+        this.hashEngine = new MyHashEngine();
         content = new LinkedList[size];
+    }
+
+    public TabHash(int size, HashEngine hashEngine){
+        content = new LinkedList[size];
+        this.hashEngine = hashEngine;
     }
 
     /**
@@ -25,7 +48,7 @@ public class TabHash {
 
     private int searchKey(Object key){
         String keyS = (String) key;
-        int pos = polynomialAcc(keyS);
+        int pos = this.hashEngine.hashFunction(key) % content.length;
         int index = -1;
 
         for (ItemTabHash item: content[pos]) {
@@ -34,7 +57,6 @@ public class TabHash {
                 return index;
             }
         }
-
         return -1;
     }
 
@@ -48,12 +70,13 @@ public class TabHash {
     public void add(Object key, Object value){
         String keyS = (String) key;
 
-        int pos = polynomialAcc(keyS);
+        int pos = this.hashEngine.hashFunction(key) % content.length;
         LinkedList<ItemTabHash> toAdd = new LinkedList<>();
 
         if(content[pos] == null){
             toAdd.add(new ItemTabHash((String)key, (Dado)value));
             content[pos] = toAdd;
+            quant++;
         }else{
             // Se já existe o key passada como parâmetro, então o valor é sobrescrito
             int i = searchKey(key);
@@ -61,19 +84,21 @@ public class TabHash {
                 content[pos].get(i).setDado((Dado) value);
             }else{
                 content[pos].add(new ItemTabHash(keyS, (Dado)value));
+                quant++;
             }
         }
     }
 
     public Object remove(Object key){
         String keyS = (String)key;
-        int index = polynomialAcc(keyS);
+        int index = this.hashEngine.hashFunction(key) % content.length;
         int indexLinkedList = searchKey(key);
         Object removed = null;
 
         if(indexLinkedList != -1){
             removed = content[index].get(indexLinkedList);
             content[index].remove(indexLinkedList);
+            quant--;
         }
         return removed;
     }
@@ -83,14 +108,14 @@ public class TabHash {
      * @param key
      * @return retorna o índice no vetor da chave KEY passada como parâmetro
      */
-    private int polynomialAcc(String key){
-        double f = 0;
-
-        for(int i = 0; i < key.length(); i++){
-            f = key.codePointAt(i) * Math.pow(base, i);
-        }
-        return (int)(f % content.length);
-    }
+//    private int polynomialAcc(String key){
+//        double f = 0;
+//
+//        for(int i = 0; i < key.length(); i++){
+//            f = key.codePointAt(i) * Math.pow(base, i);
+//        }
+//        return (int)(f % content.length);
+//    }
 
     private int asciiSum(String key){
         double f = 0;
@@ -110,7 +135,7 @@ public class TabHash {
      */
     public Object getElement(Object key){
         String keyS = (String) key;
-        int index = polynomialAcc(keyS);
+        int index = this.hashEngine.hashFunction(key) % content.length;
         int indexLinkedList = searchKey(key);
 
         if(indexLinkedList != -1){
@@ -126,7 +151,7 @@ public class TabHash {
      */
     public LinkedList<ItemTabHash> get(Object key){
         String keyS = (String) key;
-        int index = polynomialAcc(keyS);
+        int index = this.hashEngine.hashFunction(key) % content.length;
 
         return content[index];
     }
@@ -159,6 +184,13 @@ public class TabHash {
             }
         }
         return valueList;
+    }
+
+    public int size(){
+        return this.quant;
+    }
+    public boolean isEmpty(){
+        return this.quant == 0;
     }
 
 }

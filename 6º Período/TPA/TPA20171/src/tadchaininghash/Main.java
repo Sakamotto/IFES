@@ -25,8 +25,17 @@ public class Main {
             e.printStackTrace();
         }
 
+        System.out.println("Size: " + tabHash.size());
+        System.out.println("Vazio? " + tabHash.isEmpty());
+
         System.out.println(tabHash.getElement("Ana Clara"));
 
+        tabHash.remove("Ana Clara");
+
+        System.out.println("Size: " + tabHash.size());
+        System.out.println("Vazio? " + tabHash.isEmpty());
+
+        System.out.println(tabHash.getElement("Ana Clara"));
 
     }
 }
