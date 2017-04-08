@@ -1,7 +1,5 @@
 package openaddressing;
 
-import tadchaininghash.Dado;
-
 /**
  * Created by cristian on 26/03/17.
  */

@@ -29,14 +29,19 @@ public class TabHash implements Dictionary{
     private LinkedList<ItemTabHash>[] content;
     private HashEngine hashEngine;
     private int quant = 0;
+    private int N;
 
     public TabHash(int size){
         this.hashEngine = new MyHashEngine();
-        content = new LinkedList[size];
+        // Fator de carga N permite que a probabilidade de ter colisões seja menor.
+        // Estudos de caso médio sugerem que utilize um valor < 0.9 para o encadeamento.
+        this.N = (int)(size/0.8);
+        content = new LinkedList[this.N];
     }
 
     public TabHash(int size, HashEngine hashEngine){
-        content = new LinkedList[size];
+        this.N = (int)(size/0.8);
+        content = new LinkedList[this.N];
         this.hashEngine = hashEngine;
     }
 
@@ -48,7 +53,7 @@ public class TabHash implements Dictionary{
 
     private int searchKey(Object key){
         String keyS = (String) key;
-        int pos = this.hashEngine.hashFunction(key) % content.length;
+        int pos = this.hashEngine.hashFunction(key) % N;
         int index = -1;
 
         for (ItemTabHash item: content[pos]) {
@@ -70,7 +75,7 @@ public class TabHash implements Dictionary{
     public void add(Object key, Object value){
         String keyS = (String) key;
 
-        int pos = this.hashEngine.hashFunction(key) % content.length;
+        int pos = this.hashEngine.hashFunction(key) % this.N;
         LinkedList<ItemTabHash> toAdd = new LinkedList<>();
 
         if(content[pos] == null){
@@ -91,7 +96,7 @@ public class TabHash implements Dictionary{
 
     public Object remove(Object key){
         String keyS = (String)key;
-        int index = this.hashEngine.hashFunction(key) % content.length;
+        int index = this.hashEngine.hashFunction(key) % this.N;
         int indexLinkedList = searchKey(key);
         Object removed = null;
 
@@ -114,7 +119,7 @@ public class TabHash implements Dictionary{
 //        for(int i = 0; i < key.length(); i++){
 //            f = key.codePointAt(i) * Math.pow(base, i);
 //        }
-//        return (int)(f % content.length);
+//        return (int)(f % this.N);
 //    }
 
     private int asciiSum(String key){
@@ -124,7 +129,7 @@ public class TabHash implements Dictionary{
             f += key.codePointAt(i);
         }
 
-        return (int)(f % content.length);
+        return (int)(f % this.N);
     }
 
     /**
@@ -135,7 +140,7 @@ public class TabHash implements Dictionary{
      */
     public Object getElement(Object key){
         String keyS = (String) key;
-        int index = this.hashEngine.hashFunction(key) % content.length;
+        int index = this.hashEngine.hashFunction(key) % this.N;
         int indexLinkedList = searchKey(key);
 
         if(indexLinkedList != -1){
@@ -151,7 +156,7 @@ public class TabHash implements Dictionary{
      */
     public LinkedList<ItemTabHash> get(Object key){
         String keyS = (String) key;
-        int index = this.hashEngine.hashFunction(key) % content.length;
+        int index = this.hashEngine.hashFunction(key) % this.N;
 
         return content[index];
     }
@@ -163,7 +168,7 @@ public class TabHash implements Dictionary{
     public List<Object> getKeys(){
         List<Object> keyList = new ArrayList<>();
 
-        for(int i = 0; i < content.length; i++){
+        for(int i = 0; i < this.N; i++){
             for(int j = 0; j < content[i].size(); j++){
                 keyList.add(content[i].get(j).getKey());
             }
@@ -178,7 +183,7 @@ public class TabHash implements Dictionary{
     public List<Object> getElements(){
         List<Object> valueList = new ArrayList<>();
 
-        for(int i = 0; i < content.length; i++){
+        for(int i = 0; i < this.N; i++){
             for(int j = 0; j < content[i].size(); j++){
                 valueList.add(content[i].get(j).getDado());
             }
