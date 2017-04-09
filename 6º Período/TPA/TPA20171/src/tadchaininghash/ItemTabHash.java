@@ -8,10 +8,19 @@ public class ItemTabHash{
 
     private String key;
     private Dado dado;
+    private int hash;
 
     public ItemTabHash(String key, Dado dado){
         this.setKey(key);
         this.setDado(dado);
+    }
+
+    public int getHash() {
+        return hash;
+    }
+
+    public void setHash(int hash) {
+        this.hash = hash;
     }
 
     public String getKey() {
