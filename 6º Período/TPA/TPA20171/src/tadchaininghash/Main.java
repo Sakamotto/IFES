@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
         String linha;
-        TabHashOA tabHash = new TabHashOA(50);
+        TabHash<String, Dado> tabHash = new TabHash<>(50);
         BufferedReader br = new BufferedReader(new FileReader(
                 new File("").getAbsolutePath() + File.separator + "basesTestes/nomes.txt"
         ));
@@ -29,7 +29,7 @@ public class Main {
         }
 
         System.out.println("***********************************");
-        for(Object key: tabHash.getKeys()){
+        for(String key: tabHash.getKeys()){
             System.out.println(tabHash.getElement(key));
         }
 

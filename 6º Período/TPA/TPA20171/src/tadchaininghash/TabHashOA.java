@@ -69,7 +69,6 @@ public class TabHashOA implements Dictionary{
                         contentRedimensiona[index] = content[i];
                     }
                 }
-
             }
         }
         this.N = NN;

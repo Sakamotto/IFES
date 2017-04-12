@@ -1,4 +1,6 @@
-package domain;
+package MatrizEsparsaHash;
+import tadchaininghash.TabHash;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -49,19 +51,20 @@ class Cell {
 
 public class TadMatrix {
 
-	private LinkedList<Cell> matrix;
+	private TabHash<String, Cell> hashMatrix;
 	private int matLinhas;
 	private int matColunas;
 
 	public TadMatrix(int linhas, int colunas) {
-		matrix = new LinkedList<>();
+		hashMatrix = new TabHash<>(100);
 		setMatLinhas(linhas);
 		setMatColunas(colunas);
 	}
-	
-	public TadMatrix(){
-		matrix = new LinkedList<>();
+
+	public TadMatrix() {
+		hashMatrix = new TabHash<>(100);
 	}
+
 	
 	public int getMatLinhas() {
 		return matLinhas;
@@ -78,6 +81,10 @@ public class TadMatrix {
 	public void setMatColunas(int matColunas) {
 		this.matColunas = matColunas;
 	}
+
+	private String generateKey(int linha, int coluna){
+		return linha + "-" + coluna;
+	}
 	
 
 	private Cell createCell(int linha, int coluna, double valor) {
@@ -87,11 +94,7 @@ public class TadMatrix {
 	public double getValor(int linha, int coluna) {
 
 		if ((linha >= 0 && linha < getMatLinhas()) && (coluna >= 0 && coluna < getMatColunas())) {
-			for (Cell c : matrix) {
-				if (c.getLinha() == linha && c.getColuna() == coluna) {
-					return c.getValor();
-				}
-			}
+			hashMatrix.getElement(generateKey(linha, coluna));
 		}
 		return 0;
 	}
@@ -100,29 +103,12 @@ public class TadMatrix {
 		// IF que verifica se o valor procurado está dentro dos limites da
 		// matriz ...
 		if ((linha >= 0 && linha < getMatLinhas()) && (coluna >= 0 && coluna < getMatColunas())) {
-			int i = 0;
 
-			// iterar até achar uma posição existente ou chegar ao fim de matrix
-			// (isso significa que a coordenada dada não existe)
-			while ((i < matrix.size())
-					&& !(matrix.get(i).getLinha() == linha && matrix.get(i)
-							.getColuna() == coluna)) {
-				i += 1;
-			}
+			/**
+			 * TODO terminar ...
+			 */
+			hashMatrix.add(generateKey(linha, coluna), createCell(linha, coluna, valor));
 
-			// Se i == tamanho de matrix, então este elemeto ainda não existe
-			// ...
-			if (i == matrix.size()) {
-				if (valor != 0) {
-					matrix.add(createCell(linha, coluna, valor));
-				}
-			} else {
-				if (valor != 0) {
-					matrix.get(i).setValor(valor);
-				} else {
-					matrix.remove(i);
-				}
-			}
 		}else{
 			System.out.println("!!!");
 			System.out.println(getMatLinhas() + " | " + getMatColunas() + " / "+ this.matLinhas + " | " + this.matColunas);
@@ -168,7 +154,6 @@ public class TadMatrix {
 		}		
 	}
 	
-	
 	public boolean ehIgual(TadMatrix mat){
 		
 		if(this.getMatColunas() == mat.getMatColunas() && this.getMatLinhas() == mat.getMatLinhas()){
@@ -185,7 +170,7 @@ public class TadMatrix {
 	}
 	
 	
-	public void carregaMatrix(String nomeArq){
+	/*public void carregaMatrix(String nomeArq){
 		FileInputStream in;
 		TadMatrix m;
 		int lin = 0, col = 0;
@@ -215,7 +200,7 @@ public class TadMatrix {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
-	}
+	}*/
 	
 	public void salvar(String saida){
 		

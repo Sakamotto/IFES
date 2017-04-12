@@ -6,11 +6,11 @@ package tadchaininghash;
 
 public class ItemTabHash{
 
-    private String key;
-    private Dado dado;
+    private Object key;
+    private Object dado;
     private int hash;
 
-    public ItemTabHash(String key, Dado dado){
+    public ItemTabHash(Object key, Object dado){
         this.setKey(key);
         this.setDado(dado);
     }
@@ -23,19 +23,19 @@ public class ItemTabHash{
         this.hash = hash;
     }
 
-    public String getKey() {
+    public Object getKey() {
         return key;
     }
 
-    public void setKey(String key) {
+    public void setKey(Object key) {
         this.key = key;
     }
 
-    public Dado getDado() {
+    public Object getDado() {
         return dado;
     }
 
-    public void setDado(Dado dado) {
+    public void setDado(Object dado) {
         this.dado = dado;
     }
 }

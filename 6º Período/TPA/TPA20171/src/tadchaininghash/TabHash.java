@@ -24,7 +24,7 @@ class MyHashEngine extends HashEngine{
     }
 }
 
-public class TabHash implements Dictionary{
+public class TabHash<K, V>{
 
     private LinkedList<ItemTabHash>[] content;
     private HashEngine hashEngine;
@@ -36,7 +36,7 @@ public class TabHash implements Dictionary{
         // Fator de carga N permite que a probabilidade de ter colisões seja menor.
         // Estudos de caso médio sugerem que utilize um valor < 0.9 para o encadeamento.
         this.N = (int)(size/0.8);
-        content = new LinkedList[this.N];
+        content = new LinkedList[N];
     }
 
     public TabHash(int size, HashEngine hashEngine){
@@ -51,7 +51,7 @@ public class TabHash implements Dictionary{
      * @return retorna o index na LinkedList onde ele achou a KEY, ou -1 se não econtrar.
      */
 
-    private int searchKey(Object key){
+    private int searchKey(K key){
         String keyS = (String) key;
         int pos = this.hashEngine.hashFunction(key) % N;
         int index = -1;
@@ -72,36 +72,36 @@ public class TabHash implements Dictionary{
      *
      */
 
-    public void add(Object key, Object value){
+    public void add(K key, V value){
         String keyS = (String) key;
 
         int pos = this.hashEngine.hashFunction(key) % this.N;
         LinkedList<ItemTabHash> toAdd = new LinkedList<>();
 
         if(content[pos] == null){
-            toAdd.add(new ItemTabHash((String)key, (Dado)value));
+            toAdd.add(new ItemTabHash(key, value));
             content[pos] = toAdd;
             quant++;
         }else{
             // Se já existe o key passada como parâmetro, então o valor é sobrescrito
             int i = searchKey(key);
             if(i != -1){
-                content[pos].get(i).setDado((Dado) value);
+                content[pos].get(i).setDado(value);
             }else{
-                content[pos].add(new ItemTabHash(keyS, (Dado)value));
+                content[pos].add(new ItemTabHash(keyS, value));
                 quant++;
             }
         }
     }
 
-    public Object remove(Object key){
+    public V remove(K key){
         String keyS = (String)key;
         int index = this.hashEngine.hashFunction(key) % this.N;
         int indexLinkedList = searchKey(key);
-        Object removed = null;
+        V removed = null;
 
         if(indexLinkedList != -1){
-            removed = content[index].get(indexLinkedList);
+            removed = (V) content[index].get(indexLinkedList).getDado();
             content[index].remove(indexLinkedList);
             quant--;
         }
@@ -138,13 +138,13 @@ public class TabHash implements Dictionary{
      * @return Este método retorna um objeto do tipo Dado a partir de uma determinada KEY procurada. Caso não encontre, retorna null.
      *
      */
-    public Object getElement(Object key){
+    public V getElement(K key){
         String keyS = (String) key;
         int index = this.hashEngine.hashFunction(key) % this.N;
         int indexLinkedList = searchKey(key);
 
         if(indexLinkedList != -1){
-            return content[index].get(indexLinkedList).getDado();
+            return (V)content[index].get(indexLinkedList).getDado();
         }
         return null;
     }
@@ -165,12 +165,14 @@ public class TabHash implements Dictionary{
      *
      * @return retorna um List<Object> com todas as chaves</>
      */
-    public List<Object> getKeys(){
-        List<Object> keyList = new ArrayList<>();
+    public List<K> getKeys(){
+        List<K> keyList = new ArrayList<>();
 
         for(int i = 0; i < this.N; i++){
-            for(int j = 0; j < content[i].size(); j++){
-                keyList.add(content[i].get(j).getKey());
+            if(content[i] != null){
+                for(int j = 0; j < content[i].size(); j++){
+                    keyList.add((K)content[i].get(j).getKey());
+                }
             }
         }
         return keyList;
@@ -180,12 +182,14 @@ public class TabHash implements Dictionary{
      *
      * @return retorna um List<Object></> com todos os valores
      */
-    public List<Object> getElements(){
-        List<Object> valueList = new ArrayList<>();
+    public List<V> getElements(){
+        List<V> valueList = new ArrayList<>();
 
         for(int i = 0; i < this.N; i++){
-            for(int j = 0; j < content[i].size(); j++){
-                valueList.add(content[i].get(j).getDado());
+            if(content[i] != null){
+                for(int j = 0; j < content[i].size(); j++){
+                    valueList.add((V)content[i].get(j).getDado());
+                }
             }
         }
         return valueList;
