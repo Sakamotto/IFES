@@ -23,7 +23,7 @@ void* client_read(void* sock_server){
 	char buffer[256];
 	bzero(buffer,256);
 	
-	while(strcmp(buffer, "bye\n") != 0){
+	while(strcmp(buffer, "bye") != 0){
 		bzero(buffer,256);
 		n = read(server, buffer, 255);
 		if (n < 0)
@@ -31,7 +31,7 @@ void* client_read(void* sock_server){
 
 		printf("> %s\n", buffer);
 	}
-	n = write(server, "bye", strlen("bye"));
+	//n = write(server, "bye", strlen("bye"));
 	pthread_cancel(thread_write);
 		
 	return 0;

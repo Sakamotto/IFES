@@ -37,7 +37,7 @@ void* server_read(void* sock_client){
 		
 		for(i = 0; i < N_CLIENTS; i++){
 			if(newsockfd[i] != 0){
-				n = write(newsockfd[i], buffer, strlen(buffer));
+				n = write(newsockfd[i], buffer, strlen(buffer) - 1);
 			}
 		}
 		//printf("> Here is the message: %s\n", buffer);
