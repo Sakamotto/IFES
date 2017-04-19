@@ -130,7 +130,7 @@ public class TabHashOA implements Dictionary{
         int currentPos = index;
 
         if(this.content[index] == null){
-            System.out.println("Entrei aqui ...");
+            //System.out.println("Entrei aqui GET ELEMENT...");
             return null;
         }
 
@@ -141,7 +141,6 @@ public class TabHashOA implements Dictionary{
 
             while((this.content[index] == null) || (!this.content[index].getKey().equals(keyS)) && (currentPos != index)){
                 index = (index + 1) % N;
-                //System.out.println(index);
             }
 
             if(currentPos != index){
@@ -174,6 +173,32 @@ public class TabHashOA implements Dictionary{
             }
         }
         return allElements;
+    }
+
+    public ItemTabHash get(Object key){
+        int index = this.hashEngine.hashFunction(key) % N;
+        String keyS = (String) key;
+        int currentPos = index;
+
+        if(this.content[index] == null){
+            return null;
+        }
+
+        if(this.content[index].getKey().equals(keyS)){
+            return content[index];
+        }else{
+            index = (index + 1) % N;
+
+            while((this.content[index] == null) || (!this.content[index].getKey().equals(keyS)) && (currentPos != index)){
+                index = (index + 1) % N;
+            }
+
+            if(currentPos != index){
+                return content[index];
+            }
+            return null;
+        }
+
     }
 
     @Override
