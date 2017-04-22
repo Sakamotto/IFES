@@ -23,7 +23,7 @@ public class MainCorpus {
         System.out.println("Executando ...");
         while(br.ready()){
             linha = br.readLine();
-            result = linha.split("[ ,.!?:;()-/|{}\\[\\]\"“”']+");
+            result = linha.split("[\\p{Punct}\\s\\W\\d]");
 
             for(int i = 0; i < result.length; i++){
                 String lower = result[i].toLowerCase().trim();
@@ -40,9 +40,5 @@ public class MainCorpus {
         for(Object key: tabHashOA.getKeys()){
             System.out.println("Key: " + key + " | Value: " + tabHashOA.getElement(key));
         }
-
-
-
-
     }
 }

@@ -1,6 +1,9 @@
 package tadhash;
 
 
+import Utils.Serialization;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,13 +15,19 @@ import java.util.List;
 class MyHashEngine extends HashEngine{
 
     @Override
-    public int hashFunction(Object key) {
-        String keyS = (String) key;
+    public int hashFunction(Object key){
+        byte[] bytes = {};
         double f = 0;
         int base = 33;
 
-        for(int i = 0; i < keyS.length(); i++){
-            f = keyS.codePointAt(i) * Math.pow(base, i);
+        try {
+            bytes = Serialization.convertToBytes(key);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for(int i = 0; i < bytes.length; i++){
+            f = bytes[i] * Math.pow(base, i);
         }
         return (int)f;
     }
