@@ -117,19 +117,17 @@ public class StringMethods {
         return ngramas;
     }
 
-    public static void main(String args[]){
-
-        StringMethods sm = new StringMethods();
-        String w1 = "California";
-        String w2 = "California";
-
-        System.out.println(sm.jaccard(w1, w2));
-        System.out.println(sm.levenshtein(w1, w2));
-
-
-    }
-
-
+//    public static void main(String args[]){
+//
+//        StringMethods sm = new StringMethods();
+//        String w1 = "advinhar";
+//        String w2 = "adivinhar";
+//
+//        System.out.println(sm.jaccard(w1, w2));
+//        System.out.println(sm.levenshtein(w1, w2));
+//
+//
+//    }
 
 
 }

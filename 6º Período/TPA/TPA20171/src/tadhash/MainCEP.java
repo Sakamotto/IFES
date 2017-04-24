@@ -9,7 +9,7 @@ public class MainCEP {
 
     public static void main(String[] args) throws IOException {
 
-        TabHashOA tabHashOA = new TabHashOA(250);
+        TabHash<String, String[]> tabHashOA = new TabHash<>(100);
 
         String endereco[];
         String nomeArq = "vix-ruas-ceps.txt";
@@ -32,6 +32,8 @@ public class MainCEP {
 
             tabHashOA.add(cep, endereco);
         }
+
+        System.out.println(tabHashOA.size());
 
         System.out.println(((String[])tabHashOA.getElement("29065-240"))[0]);
         System.out.println(((String[])tabHashOA.getElement("29065-240"))[1]);

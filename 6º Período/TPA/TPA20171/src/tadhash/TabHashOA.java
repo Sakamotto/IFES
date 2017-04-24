@@ -1,5 +1,8 @@
 package tadhash;
 
+import Utils.Serialization;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -9,13 +12,19 @@ import java.util.ArrayList;
 class MyHashEngineOA extends HashEngine{
 
     @Override
-    public int hashFunction(Object key) {
-        String keyS = (String) key;
+    public int hashFunction(Object key){
+        byte[] bytes = {};
         double f = 0;
         int base = 33;
 
-        for(int i = 0; i < keyS.length(); i++){
-            f = keyS.codePointAt(i) * Math.pow(base, i);
+        try {
+            bytes = Serialization.convertToBytes(key);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for(int i = 0; i < bytes.length; i++){
+            f = bytes[i] * Math.pow(base, i);
         }
         return (int)f;
     }
@@ -34,6 +43,12 @@ public class TabHashOA implements Dictionary{
         // Fator de carga N permite que a probabilidade de ter colisões seja menor.
         // Estudos de caso médio sugerem que utilize um valor < 0.5 para o endereçamento aberto.
         N = (int)(size/0.8);
+        this.content = new ItemTabHash[N];
+        this.hashEngine = new MyHashEngineOA();
+    }
+
+    public TabHashOA(){
+        N = (int)(1024/0.8);
         this.content = new ItemTabHash[N];
         this.hashEngine = new MyHashEngineOA();
     }
@@ -126,7 +141,7 @@ public class TabHashOA implements Dictionary{
     @Override
     public Object getElement(Object key) {
         int index = this.hashEngine.hashFunction(key) % N;
-        String keyS = (String) key;
+        //String keyS = (String) key;
         int currentPos = index;
 
         if(this.content[index] == null){
@@ -134,12 +149,12 @@ public class TabHashOA implements Dictionary{
             return null;
         }
 
-        if(this.content[index].getKey().equals(keyS)){
+        if(this.content[index].getKey().equals(key)){
             return content[index].getDado();
         }else{
             index = (index + 1) % N;
 
-            while((this.content[index] == null) || (!this.content[index].getKey().equals(keyS)) && (currentPos != index)){
+            while((this.content[index] == null) || (!this.content[index].getKey().equals(key)) && (currentPos != index)){
                 index = (index + 1) % N;
             }
 
@@ -177,19 +192,19 @@ public class TabHashOA implements Dictionary{
 
     public ItemTabHash get(Object key){
         int index = this.hashEngine.hashFunction(key) % N;
-        String keyS = (String) key;
+//        String keyS = (String) key;
         int currentPos = index;
 
         if(this.content[index] == null){
             return null;
         }
 
-        if(this.content[index].getKey().equals(keyS)){
+        if(this.content[index].getKey().equals(key)){
             return content[index];
         }else{
             index = (index + 1) % N;
 
-            while((this.content[index] == null) || (!this.content[index].getKey().equals(keyS)) && (currentPos != index)){
+            while((this.content[index] == null) || (!this.content[index].getKey().equals(key)) && (currentPos != index)){
                 index = (index + 1) % N;
             }
 
