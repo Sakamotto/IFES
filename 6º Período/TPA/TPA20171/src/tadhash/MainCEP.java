@@ -35,10 +35,9 @@ public class MainCEP {
 
         System.out.println(tabHashOA.size());
 
-        System.out.println(((String[])tabHashOA.getElement("29065-240"))[0]);
-        System.out.println(((String[])tabHashOA.getElement("29065-240"))[1]);
-        System.out.println(((String[])tabHashOA.getElement("29065-240"))[2]);
-
+        System.out.println((tabHashOA.getElement("29065-240"))[0]);
+        System.out.println((tabHashOA.getElement("29065-240"))[1]);
+        System.out.println((tabHashOA.getElement("29065-240"))[2]);
 
 
     }
