@@ -48,6 +48,7 @@ int main(int argc, char **argv)
 	double a, b, soma_local = 0.0, response = 0.0, segmento = 0.0;
 	double integral = 0.0;
     	Targumentos arg;
+	double *vet;
 	
 	MPI_Init(&argc, &argv);
 	
@@ -67,8 +68,9 @@ int main(int argc, char **argv)
 	arg.a = a + (rank*segmento),
 	arg.b = a + (rank+1)*segmento,
 	arg.N = N/size;
+	vet = malloc(size * sizeof(double));
 
-	soma_local = ThreadCalculaArea(&arg);  
+	soma_local = ThreadCalculaArea(&arg);
     
     if(rank == 0){
 	integral = soma_local;

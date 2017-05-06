@@ -1,0 +1,32 @@
+Relatório Exercício Integral MPI
+
+O que foi necessário alterar:
+	Foi necessário criar uma variável de soma local (que calcula uma parte da integral) para cada processo e enviar (Via Send()) para o processo responsável por somar todas as áreas.
+	Além de criar várias instâncias do processo via MPI para distribuir o cálculo realizado pela aplicação.
+
+
+Desempenho:
+[*] Configuração do PC: Pentium(R) Dual-Core CPU T4300  @ 2.10GHz, Memória: 2GB
+[*] Teste 1: time mpirun -np 8 ./integral_mpi 0 1 1000000 (1 Milhão)
+	Resultado: 0m0.369s
+
+[*] Teste 2: time mpirun -np 4 ./integral_mpi 0 1 1000000 (1 Milhão)
+	Resultado: 0m0.221s
+
+[*] Teste 3: time mpirun -np 2 ./integral_mpi 0 1 1000000 (1 Milhão)
+	Resultado: 0m0.169s
+
+[*] Teste 4: time mpirun -np 1 ./integral_mpi 0 1 1000000 (1 Milhão)
+	Resultado: 0m0.209s
+
+[*] Teste 5: time mpirun -np 8 ./integral_mpi 0 1 10000000 (10 Milhões)
+	Resultado: 0m1.189s
+
+[*] Teste 6: time mpirun -np 4 ./integral_mpi 0 1 10000000 (10 Milhões)
+	Resultado: 0m0.836s
+
+[*] Teste 7: time mpirun -np 2 ./integral_mpi 0 1 10000000 (10 Milhões)
+	Resultado: 0m0.834s
+
+[*] Teste 8: time mpirun -np 1 ./integral_mpi 0 1 10000000 (10 Milhões)
+	Resultado: 0m1.300s
