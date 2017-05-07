@@ -60,12 +60,12 @@ public class GrafoDirecionado extends Grafo{
     }
 
     @Override
-    public Aresta insereAresta(Vertice v, Vertice w, Object o) {
+    public Aresta insereAresta(String labelAresta, String v, String w, Object o) {
         return null;
     }
 
     @Override
-    public Vertice insereVertice(Object o) {
+    public Vertice insereVertice(String label, Object o) {
         return null;
     }
 }

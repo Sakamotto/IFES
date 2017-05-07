@@ -26,7 +26,7 @@ public abstract class Grafo {
     public abstract List<Vertice> endVertices(Aresta a);
     public abstract Vertice opposite(Vertice v, Aresta a);
     public abstract boolean areAdjacent(Vertice v, Vertice w);
-    public abstract Aresta insereAresta(Vertice v, Vertice w, Object o);
-    public abstract Vertice insereVertice(Object o);
+    public abstract Aresta insereAresta(String labelAresta, String v, String w, Object o);
+    public abstract Vertice insereVertice(String label, Object o);
 
 }

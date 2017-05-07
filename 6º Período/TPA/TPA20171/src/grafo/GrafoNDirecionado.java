@@ -5,6 +5,7 @@ import hashmelhorado.TabHEA;
 import matrizmelhorada.TADMatH;
 import matrizmelhorada.TADMatHChain;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -12,12 +13,13 @@ import java.util.List;
  */
 public class GrafoNDirecionado extends Grafo {
 
-    private TADMatH conteudo = new TADMatHChain(10,10);
+    private TADMatH conteudo;
     private TADTabH tabVertices;
     private TADTabH tabArestas;
     private int id = 0;
 
     public GrafoNDirecionado(){
+        conteudo = new TADMatHChain(10,10);
         tabArestas = new TabHEA();
         tabVertices = new TabHEA();
     }
@@ -26,18 +28,33 @@ public class GrafoNDirecionado extends Grafo {
         return this.id++;
     }
 
-    private Vertice createVertice(Object o){
-        return new Vertice(generateID(), o);
+    private Vertice createVertice(String label, Object o){
+        return new Vertice(generateID(), o, label);
+    }
+    private Aresta createAresta(String label, Object o){
+        return new Aresta(this.generateID(), o, label);
     }
 
     @Override
     public List<Aresta> arestas() {
-        return null;
+        LinkedList<Aresta> result = new LinkedList<>();
+
+        for(Object o: tabArestas.keys()){
+            result.add((Aresta)o);
+        }
+
+        return result;
     }
 
     @Override
     public List<Vertice> vertices() {
-        return null;
+        LinkedList<Vertice> result = new LinkedList<>();
+
+        for(Object o: tabArestas.keys()){
+            result.add((Vertice)o);
+        }
+
+        return result;
     }
 
     @Override
@@ -76,20 +93,26 @@ public class GrafoNDirecionado extends Grafo {
     }
 
     @Override
-    public Aresta insereAresta(Vertice v, Vertice w, Object o) {
-        return null;
+    public Aresta insereAresta(String labelAresta, String v, String w, Object o) {
+        Aresta a = createAresta(labelAresta, o);
+        tabArestas.insertItem(labelAresta, a);
+        int idV = ((Vertice)this.tabVertices.findElem(v)).getId();
+        int idW = ((Vertice)this.tabVertices.findElem(w)).getId();
+
+        conteudo.setElem(idV, idW, a.getId());
+
+        return a;
     }
 
     @Override
-    public Vertice insereVertice(Object o) {
-        Vertice v = createVertice(o);
-        tabVertices.insertItem(v.getId(), v.getDado());
-        conteudo.setElem(v.getId(), v.getId(), 0);
+    public Vertice insereVertice(String label, Object o) {
+        Vertice v = createVertice(label, o);
+        tabVertices.insertItem(label, v);
         return v;
     }
 
     public static void main(String args[]){
         GrafoNDirecionado g = new GrafoNDirecionado();
-        System.out.println(g.insereVertice(100).getDado());
+//        System.out.println(g.insereVertice(100).getDado());
     }
 }

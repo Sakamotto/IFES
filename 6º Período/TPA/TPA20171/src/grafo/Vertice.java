@@ -9,10 +9,10 @@ public class Vertice {
     private int id;
     private String label;
 
-    public Vertice(int id, Object dado){
+    public Vertice(int id, Object dado, String label){
         this.id = id;
         this.dado = dado;
-        this.label = Integer.toString(id);
+        this.label = label;
     }
 
     public Object getDado() {
